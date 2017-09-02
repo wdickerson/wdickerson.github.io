@@ -1,0 +1,293 @@
+<html>
+    
+<head>
+    <link href="../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../css/about.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>William Dickerson</title>
+</head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<body>
+
+<div id="header-div">
+    <div id="myName">
+        <a class="nav-link" href="..">
+            William Dickerson
+            <div id="myLocation"> New York, NY, USA </div>
+        </a>
+    </div>
+    <div id="color-stripe" height="100%">
+        <svg id="color-stripe-svg" viewBox="0 0 144 150" preserveAspectRatio="none">
+            <polygon class="navBlue" points="0,0 24,0 0,150 "/>
+            <polygon class="col1" points="24,0 54,0 30,150 0,150 "/>
+            <polygon class="col2" points="54,0 84,0 60,150 30,150 "/>
+            <polygon class="col3" points="84,0 114,0 90,150 60,150 "/>
+            <polygon class="col4" points="114,0 144,0 120,150 90,150 "/>
+            <polygon class="bgLight" points="144,0 144,150 120,150"/>
+        </svg>
+    </div>
+    <div id="skills-container">
+        Computer Science, Engineering<br>
+        <div class="sub-skill">
+            &amp; Other Adventures
+        </div>
+    </div>
+</div>
+
+<div id="nav-bar">
+    <svg style="display:none";>
+        <defs>
+            <svg id="slash-def-left" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,0 24,0 24,4 0,4"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,100 24,100 24,96 0,96"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="7,100 9,100 20,0 18,0"/>
+-->
+                <polygon class="slash-cur-slash" 
+                points="6,100 7,100 18,0 17,0"/>
+                <polygon class="slash-cur-nav" 
+                points="6,100 0,100 0,0 17,0"/>
+            </svg>
+            <svg id="slash-def-right" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,0 24,0 24,4 0,4"
+                fill="green"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,100 24,100 24,96 0,96"
+                fill="green"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="4,100 6,100 17,0 15,0"
+                fill="green"/>
+-->
+                <polygon class="slash-cur-slash" 
+                points="6,100 7,100 18,0 17,0"/>
+                <polygon class="slash-cur-nav" 
+                points="7,100 24,100 100,0 18,0"
+                fill="yellow"/>
+            </svg>
+            <svg id="slash-def" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+                <polygon class="slash-svg" points="6,100 7,100 18,0 17,0"/>
+            </svg>
+        </defs>
+    </svg>
+    <div id="blank-nav-div" class="bx-div">
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg slash-svg-cur">
+            <use xlink:href="#slash-def-left"></use>
+        </svg>
+    </div>
+    <div id="b1-div" class="bx-div current-bx-div">
+        About
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg slash-svg-cur">
+            <use xlink:href="#slash-def-right"></use>
+        </svg>
+    </div>
+    <div id="b2-div" class="bx-div">
+        <a class="nav-link" href="../projects"><span class="empty-span"></span>
+            Projects
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg">
+            <use xlink:href="#slash-def"></use>
+        </svg>
+    </div>
+    <div id="b3-div" class="bx-div">
+        <a class="nav-link" href="../blog"><span class="empty-span"></span>
+            Blog
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg">
+            <use xlink:href="#slash-def"></use>
+        </svg>
+    </div>
+    <div id="b4-div" class="bx-div">
+        <a class="nav-link" href="../contact"><span class="empty-span"></span>
+            Contact
+        </a>
+    </div>
+</div>
+
+<div id="about-div">
+    <div id="glance-div" class="about">
+<!--
+        <div id="glance-header">
+            <h5>at a glance</h5>
+        </div>
+-->
+        <div id="glance-figure">
+        </div>
+    </div>
+    <div id="about-me-div" class="about">
+        <div id="about-me-header">
+            <h5>about me</h5>
+        </div>
+        <div id="about-me-figure">
+            <p>On Mississippi State University's EcoCAR team,  I learned to program embedded systems in a multi-year development environment. At AVL Powertrain Engineering, I helped launch the 2013 Lincoln MKZ and led the systems integration of an autonomous test enviroment for Chrysler Motor Corporation.</p>
+            <p>Now, I study computer science at Pace University in lower Manhattan. I enjoy creating data visulizations with d3.js and geospatial applications with leaflet.</p>
+        </div>
+    </div>
+    <div id="hours-chart" class="about">
+        <div id="figure1-div">
+            <div id="figure1-header">
+                <h5>hours spent</h5>
+            </div>
+            <div id="figure1">
+                Figure 1 svg will go here.
+            </div>
+        </div>
+        <div id="figure2-designing-div" class="figure2-div">
+            <div id="figure2-designing-header" class="figure2-header">
+                <h5>designing</h5>
+            </div>
+            <div id="figure2-designing" class="figure2-svg-div">
+                Designing svg will go here.
+            </div>
+            <div class="figure2-text-div">
+                This is a shift schedule for a four speed transmission. Implemented in software, the design of the shift schedule impacts the performance, efficiency, safety, and durability of the vehicle.
+            </div>
+        </div>
+        <div id="figure2-coding-div" class="figure2-div">
+            <div id="figure2-coding-header" class="figure2-header">
+                <h5>coding</h5>
+            </div>
+            <div id="figure2-coding" class="figure2-svg-div">
+                Coding svg will go here.
+            </div>
+            <div class="figure2-text-div">
+                Writing effective code is one tool of the software developer. Flexibility among languages and libraries is essential. Outside of the program environment, scripting can be used for analysis and optimization.
+            </div>
+        </div>
+        <div id="figure2-integrating-div" class="figure2-div">
+            <div id="figure2-integrating-header" class="figure2-header">
+                <h5>integrating</h5>
+            </div>
+            <div id="figure2-integrating" class="figure2-svg-div">
+                <svg id="figure2-integrating-svg" width="100%" 
+                viewBox="0 0 300 240">
+                    <line x1=45 x2=150 y1=100 y2=100 
+                     style="stroke-width:2;stroke:black;"/>
+                    <line x1=150 x2=150 y1=100 y2=210 
+                     style="stroke-width:2;stroke:black;"/>
+                    <line x1=150 x2=260 y1=100 y2=40 
+                     style="stroke-width:2;stroke:black;"/>
+                    <line x1=150 x2=260 y1=100 y2=80 
+                     style="stroke-width:2;stroke:black;"/>
+                    <line x1=150 x2=260 y1=100 y2=120 
+                     style="stroke-width:2;stroke:black;"/>
+                    <line x1=150 x2=260 y1=100 y2=160 
+                     style="stroke-width:2;stroke:black;"/>
+                    <circle r=24 cx=45 cy=100
+                    fill="rgb(167,193,212)"/>
+                    <circle r=34 cx=150 cy=100
+                    fill="rgb(53,222,203)"/>
+                    <circle r=24 cx=150 cy=210
+                    fill="rgb(235,167,153)"/>     
+                    <circle r=16 cx=260 cy=40
+                    fill="rgb(27,140,224)"/>
+                    <circle r=16 cx=260 cy=80
+                    fill="rgb(27,140,224)"/>
+                    <circle r=16 cx=260 cy=120
+                    fill="rgb(27,140,224)"/>
+                    <circle r=16 cx=260 cy=160
+                    fill="rgb(27,140,224)"/>              
+                </svg>
+            </div>
+            <div class="figure2-text-div">
+                A well-designed architecture minimizes integration time, but there will always be challenges to address when introducing software and hardware modules into a distributed system.
+            </div>
+        </div>
+        <div id="figure2-validating-div" class="figure2-div">
+            <div id="figure2-validating-header" class="figure2-header">
+                <h5>validating</h5>
+            </div>
+            <div id="figure2-validating" class="figure2-svg-div">
+                <svg id="figure2-validating-svg" width="100%" 
+                viewBox="0 0 300 240">
+                    <polygon points="20,40 80,160 150,160 90,40" 
+                    fill="rgba(27,140,224,.7)"/>
+                    
+                    <polygon points="80,160 110,220 190,220 220,160" 
+                    fill="rgba(167,193,212,.7)"/>
+                    
+                    <polygon points="280,40 220,160 150,160 210,40" 
+                    style="fill:rgba(53,222,203,.7);
+                           stroke-width:4;
+                           stroke:rgb(52, 178, 164)"/>              
+                </svg>
+            </div>
+            <div class="figure2-text-div">
+                The importance of validating software shouldn't be understated. Especially in safety- and mission-critical systems, every potential edge case and race condition must be considered.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="welcome-footer-not-home">
+    <div id="footer-social">
+        <a class="social-link" href="http://stackoverflow.com/users/5953464/wilburrr90">
+            <i class="fa fa-stack-overflow"></i>
+        </a> 
+        <a class="social-link" 
+        href="http://www.github.com/wdickerson">
+            <i class="fa fa-github"></i>
+        </a>
+        <a class="social-link" 
+        href="https://www.linkedin.com/in/wdickerson08">
+            <i class="fa fa-linkedin-square"></i>
+        </a>
+        <div id="footer-bio">
+            <img id="footer-bio-img" 
+            src="../css/images/me_hudson.jpg"/>
+            William has developed software for 3 of the world's largets automakers. He studies computer science at Pace University and holds a bachelor's degree in mathematics.
+        </div>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../contact"><span class="empty-span"></span>
+            Contact
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../blog"><span class="empty-span"></span>
+            Blog
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../projects"><span class="empty-span"></span>
+            Projects
+        </a>
+    </div>
+    <div class="footer-nav">
+        About
+    </div>
+</div>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="d3.layout.cloud.js"></script>
+<!--<script src="d3.min.js"></script>-->
+<script src="about.js"></script>
+</body>
+
+</html>
+

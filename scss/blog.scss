@@ -1,0 +1,74 @@
+@import "vars.scss";
+
+body {
+    background-color: $bgBlue;
+}
+//.current-bx-div {
+//    background-color: white;
+//}
+//.slash-svg-cur {
+//    background-color: white;
+//}
+h4 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 2.2rem;
+    margin-bottom: 10px;
+}
+.blog-link {
+    color: inherit;
+    text-decoration: none;
+}
+.blog-link:visited {
+    color: inherit;
+    text-decoration: none;
+}
+h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top:0px;
+}
+h3 i {
+    font-style: italic;
+}
+
+#blog-div {
+    box-sizing: border-box;
+    padding: 40px;
+    display: flex;
+    flex-flow: column;
+}
+#blog-post {
+    background-color: white;
+    box-sizing: border-box;
+    width: 72%;
+    max-width: 920px;
+    margin: auto;
+}
+.blog-preview {
+    box-sizing: border-box;
+    margin: auto;
+    margin-bottom: 38px;
+    padding: 16px;
+    padding-top: 0px;
+    padding-left: 16px;
+    padding-bottom: 4px;
+    padding-right: 0px;
+    width: 80%;
+    max-width: 620px;
+    border-left: 6px solid $coreBlue;
+}
+
+@media screen and (max-width: 700px) {
+
+    .blog-preview {
+        width: 100%;
+    }
+    #blog-div {
+        padding: 16px;
+    }
+    #blog-post {
+        width: 94%;
+    }
+
+}

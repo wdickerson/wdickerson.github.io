@@ -1,0 +1,328 @@
+<html>
+    
+<head>
+    <link href="../../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog-post.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <link href="../prism.default.css" rel="stylesheet"/>
+    <title>William Dickerson</title>
+</head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<body>
+
+<div id="header-div">
+    <div id="myName">
+        <a class="nav-link" href="../..">
+            William Dickerson
+            <div id="myLocation"> New York, NY, USA </div>
+        </a>
+    </div>
+    <div id="color-stripe" height="100%">
+        <svg id="color-stripe-svg" viewBox="0 0 144 150" preserveAspectRatio="none">
+            <polygon class="navBlue" points="0,0 24,0 0,150 "/>
+            <polygon class="col1" points="24,0 54,0 30,150 0,150 "/>
+            <polygon class="col2" points="54,0 84,0 60,150 30,150 "/>
+            <polygon class="col3" points="84,0 114,0 90,150 60,150 "/>
+            <polygon class="col4" points="114,0 144,0 120,150 90,150 "/>
+            <polygon class="bgLight" points="144,0 144,150 120,150"/>
+        </svg>
+    </div>
+    <div id="skills-container">
+        Computer Science, Engineering<br>
+        <div class="sub-skill">
+            &amp; Other Adventures
+        </div>
+    </div>
+</div>
+
+<div id="nav-bar">
+    <svg style="display:none";>
+        <defs>
+            <svg id="slash-def-left" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,0 24,0 24,4 0,4"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,100 24,100 24,96 0,96"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="7,100 9,100 20,0 18,0"/>
+-->
+                <polygon class="slash-cur-slash" 
+                points="6,100 7,100 18,0 17,0"/>
+                <polygon class="slash-cur-nav" 
+                points="6,100 0,100 0,0 17,0"/>
+            </svg>
+            <svg id="slash-def-right" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,0 24,0 24,4 0,4"
+                fill="green"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,100 24,100 24,96 0,96"
+                fill="green"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="4,100 6,100 17,0 15,0"
+                fill="green"/>
+-->
+                <polygon class="slash-cur-slash" 
+                points="6,100 7,100 18,0 17,0"/>
+                <polygon class="slash-cur-nav" 
+                points="7,100 24,100 100,0 18,0"
+                fill="yellow"/>
+            </svg>
+            <svg id="slash-def" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+                <polygon class="slash-svg" points="6,100 7,100 18,0 17,0"/>
+            </svg>
+        </defs>
+    </svg>
+    <div id="blank-nav-div" class="bx-div">
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg">
+            <use xlink:href="#slash-def"></use>
+        </svg>
+    </div>
+    <div id="b1-div" class="bx-div">
+        <a class="nav-link" href="../../about"><span class="empty-span"></span>
+            About
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg">
+            <use xlink:href="#slash-def"></use>
+        </svg>
+    </div>
+    <div id="b2-div" class="bx-div">
+        <a class="nav-link" href="../../projects"><span class="empty-span"></span>
+            Projects
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg slash-svg-cur">
+            <use xlink:href="#slash-def-left"></use>
+        </svg>
+    </div>
+    <div id="b3-div" class="bx-div current-bx-div">
+        <a class="nav-link" href=".."><span class="empty-span"></span>
+            Blog
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg slash-svg-cur">
+            <use xlink:href="#slash-def-right"></use>
+        </svg>
+    </div>
+    <div id="b4-div" class="bx-div">
+        <a class="nav-link" href="../../contact"><span class="empty-span"></span>
+            Contact
+        </a>
+    </div>
+</div>
+
+<div id="blog-post" class="language-js">
+<! ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    YOUR BLOG POST GOES HERE 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ >
+<h2>Responsive Figures with D3 and the SVG viewBox</h2>
+<h3>June 21st, 2016 | by William Dickerson</h3>
+<p>The SVG <code>viewBox</code> attribute is a great way to make D3 charts responsive to window resizing. Let's look at an example of a bar chart about customers' dessert preference. Here's the data:</p>
+
+<div class="cb"><pre>
+<code>var desserts = ["Cookies","Cupcakes","Ice Cream Cones","Muffins"];
+var customers = [34,41,52,18];</code>
+</pre></div>
+
+<p>Let's start with a non-responsive chart. First, we set up our margins and prepare an SVG element to draw on:</p>
+
+<div class="cb"><pre>
+<code>var margin = {top: 10, right: 10, bottom: 120, left: 30};
+var width = 300 - margin.left - margin.right;
+var height = 300 - margin.top - margin.bottom;
+
+//A non-responsive chart area
+var chart = d3.select("#chart-div")
+                .append("svg")
+                .attr("width",width+margin.left+margin.right)
+                .attr("height",height+margin.top+margin.bottom)
+                .append("g")
+                .attr("transform","translate("+
+                    margin.left+","+margin.top+")");</code>
+</pre></div>
+                
+<p>Now, we set up the scales and axes:</p>
+
+<div class="cb"><pre>
+<code>//Define the x and y scales
+var x = d3.scale.ordinal()
+          .domain(desserts)
+          .rangePoints([0,width],1);         
+var y = d3.scale.linear()
+          .domain([0,60])
+          .range([height,0]); 
+
+//Define the x and y axes
+var xAxis = d3.svg.axis()
+              .scale(x)
+              .orient("bottom");
+var yAxis = d3.svg.axis()
+              .scale(y)
+              .orient("left");</code>
+</pre></div>
+            
+<p>Finally, add the axes and bars to our chart area: </p>
+
+<div class="cb"><pre>
+<code>//Add the x axis, rotate the labels
+chart.append("g")
+     .attr("transform", "translate(0,"+height+")")
+     .call(xAxis)
+     .selectAll("text")
+     .attr("transform", "rotate(-65)")
+     .style("text-anchor", "end");
+
+//Add the y axis
+chart.append("g")
+     .call(yAxis);
+
+//Add the bars
+chart.selectAll("bars")
+     .data(desserts).enter()
+     .append("rect")
+     .attr("x",function (d) { return x(d)-20; })
+     .attr("y",function (d,i) { return y(customers[i]); })
+     .attr("height",function (d,i) { return height-y(customers[i]); })
+     .attr("width",50);</code>
+</pre></div>
+
+<p>Here's our non-responsive chart in a JSFiddle. Notice the blue border around the <code>div</code> element, and notice that the chart doesn't change if you resize the window.</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/hojrabkg/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h4>Responding to width resizes</h4>
+
+<p>Now the fun part! To make our chart responsive, we just need to change a few lines in our definition of the <code>chart</code> area: </p>
+
+<div class="cb"><pre>
+<code>//A responsive chart area
+var chart = d3.select("#chart-div")
+                .append("svg")
+                .attr("width","100%")
+                .attr("viewBox","0 0 "+
+                    (width+margin.left+margin.right)+
+                    " "+
+                    (height+margin.top+margin.bottom) )
+                .append("g")
+                .attr("transform","translate("+
+                    margin.left+","+margin.top+")");</code>
+</pre></div>
+
+<p>Now we're defining the <code>chart</code> area to be the width of our <code>div</code>. Sometimes that width might be 100 pixels, and sometimes it might be 800 pixels. The <code>viewBox</code> attribute tells the browser that--no matter the <i>actual</i> width of the <code>chart</code> area--we want to work with a single coordinate system. Our coordinate system goes from 0 to <code>width + margin.left + margin.right</code> in the x direction, and from 0 to <code>height + margin.top + margin.bottom</code>  in the y direction.</p>
+
+<p>Here it is in a JSFiddle. Notice how the chart responds to width resizes, but how it will still outgrow the height of our <code>div</code>. </p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/p571pe30/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h4>Responding to width AND height resizes</h4>
+
+<p>What happens when we set both the width and height of <code>chart</code> to be 100% or our <code>div</code>? By default, the browser will preserve the aspect ratio of the drawing, so you will get the largest possible chart that fits into both the width and height of the <code>div</code>. See it in this fiddle:</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/up5kex2e/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>Sometimes we may want our chart to skew in order to fill the entire <code>div</code>. In that case, we just add <code>.attr("preserveAspectRatio","none")</code> to our definition of <code>chart</code>. Here it is in a fiddle:</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/kczd4rjf/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>Although our example looked at a bar chart, the <code>viewBox</code> technique works for many types of figures generated with D3.</p>
+
+<p>Here's a great tutorial on the SVG viewBox: <a href="http://jonibologna.com/svg-viewbox-and-viewport/">http://jonibologna.com/svg-viewbox-and-viewport/</a></p>
+
+<! Disqus comments >
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+
+var disqus_config = function () {
+    this.page.url = 'http://www.wdickerson.com/blog/viewboxd3/';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = '/viewboxd3/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//wdickerson.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<! End Disqus comments >
+
+<! ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    END OF BLOG POST 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ >
+</div>
+    
+<div id="welcome-footer-not-home">
+    <div id="footer-social">
+        <a class="social-link" href="http://stackoverflow.com/users/5953464/wilburrr90">
+            <i class="fa fa-stack-overflow"></i>
+        </a> 
+        <a class="social-link" 
+        href="http://www.github.com/wilburrr90">
+            <i class="fa fa-github"></i>
+        </a>
+        <a class="social-link" 
+        href="https://www.linkedin.com/in/wdickerson08">
+            <i class="fa fa-linkedin-square"></i>
+        </a>
+        <div id="footer-bio">
+            <img id="footer-bio-img" 
+            src="../../css/images/me_hudson.jpg"/>
+            William has developed software for 3 of the world's largets automakers. He studies computer science at Pace University and holds a bachelor's degree in mathematics.
+        </div>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../../contact"><span class="empty-span"></span>
+            Contact
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../"><span class="empty-span"></span>
+            Blog
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../../projects"><span class="empty-span"></span>
+            Projects
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../../about"><span class="empty-span"></span>
+            About
+        </a>
+    </div>
+</div>
+
+<script src="../portfolio.js"></script>
+<script src="../prism.min.js"></script>
+</body>
+
+</html>
+

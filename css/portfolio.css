@@ -1,0 +1,568 @@
+/* line 5, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 5, ../scss/portfolio.scss */
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 10, ../scss/portfolio.scss */
+body {
+  background-color: #C7EAFF;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #06243B;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 23, ../scss/portfolio.scss */
+#background-container {
+  position: absolute;
+  overflow: hidden;
+  background-color: #e1effa;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 180px;
+  width: 100vw;
+}
+
+/* line 38, ../scss/portfolio.scss */
+#triangle {
+  min-height: 600px;
+  fill: #1A98FA;
+}
+
+/* line 44, ../scss/portfolio.scss */
+.navBlue {
+  fill: #1A98FA;
+}
+
+/* line 47, ../scss/portfolio.scss */
+.textBlue {
+  fill: #0D4A7A;
+}
+
+/* line 50, ../scss/portfolio.scss */
+.bgLight {
+  fill: #e1effa;
+}
+
+/* line 53, ../scss/portfolio.scss */
+.col1 {
+  fill: #b1c8d9;
+}
+
+/* line 56, ../scss/portfolio.scss */
+.col2 {
+  fill: #61e5d6;
+}
+
+/* line 60, ../scss/portfolio.scss */
+.col3 {
+  fill: #f2c4bb;
+}
+
+/* line 64, ../scss/portfolio.scss */
+.col4 {
+  fill: #dd0c06;
+}
+
+/* line 68, ../scss/portfolio.scss */
+.col5 {
+  fill: #FDE04C;
+}
+
+/* line 72, ../scss/portfolio.scss */
+#header-div {
+  display: flex;
+  flex-flow: row;
+  height: 162px;
+}
+
+/* line 77, ../scss/portfolio.scss */
+#myName {
+  box-sizing: border-box;
+  color: #06243B;
+  background-color: #1A98FA;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.0;
+  width: 272px;
+  min-width: 272px;
+  padding-top: 28px;
+  padding-left: 24px;
+  float: left;
+}
+
+/* line 94, ../scss/portfolio.scss */
+#myLocation {
+  font-size: 26px;
+  font-weight: 200;
+  color: white;
+}
+
+/* line 102, ../scss/portfolio.scss */
+#color-stripe {
+  width: 240px;
+}
+
+/* line 106, ../scss/portfolio.scss */
+#color-stripe-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 114, ../scss/portfolio.scss */
+#skills-container {
+  flex: 1;
+  height: 162px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 29px;
+  font-weight: 300;
+  min-width: 225px;
+  box-sizing: border-box;
+  padding-top: 32px;
+  background-color: #e1effa;
+}
+
+/* line 131, ../scss/portfolio.scss */
+.skill {
+  height: 112px;
+}
+
+/* line 134, ../scss/portfolio.scss */
+.sub-skill {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* line 139, ../scss/portfolio.scss */
+#nav-bar {
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  display: flex;
+  box-shadow: 0px 2px 3px 0px gray;
+}
+
+/* line 150, ../scss/portfolio.scss */
+.slash-div {
+  background-color: #1A98FA;
+}
+
+/* line 153, ../scss/portfolio.scss */
+.slash-svg-cur {
+  background-color: #e1effa;
+}
+
+/* line 157, ../scss/portfolio.scss */
+.slash-cur-nav {
+  fill: #1A98FA;
+}
+
+/* line 160, ../scss/portfolio.scss */
+.slash-svg {
+  width: 24;
+  height: 100%;
+  fill: #e4eaf9;
+}
+
+/* line 166, ../scss/portfolio.scss */
+.bx-div {
+  box-sizing: border-box;
+  flex: 1;
+  height: 100%;
+  line-height: 56px;
+  font-size: 20px;
+  background-color: #1A98FA;
+  color: white;
+  text-align: center;
+  font-weight: 400;
+  position: relative;
+}
+
+/* line 180, ../scss/portfolio.scss */
+.current-bx-div {
+  box-sizing: border-box;
+  background-color: #e1effa;
+  color: #0D4A7A;
+  width: 180%;
+  font-weight: 700;
+}
+
+/* line 190, ../scss/portfolio.scss */
+#blank-nav-div {
+  flex: 7;
+}
+
+/* line 193, ../scss/portfolio.scss */
+#b4-div {
+  padding-right: 6px;
+}
+
+/* line 196, ../scss/portfolio.scss */
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* line 200, ../scss/portfolio.scss */
+.empty-span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* line 208, ../scss/portfolio.scss */
+#welcome-div {
+  background-color: #1A98FA;
+  box-sizing: border-box;
+  height: calc( 100vh - 290px );
+  min-height: 250px;
+  width: 100%;
+  padding: 42px;
+  padding-right: 8%;
+}
+
+/* line 221, ../scss/portfolio.scss */
+#welcome-text-div {
+  color: white;
+  width: 90%;
+  float: right;
+  box-sizing: border-box;
+  min-width: 600px;
+  font-size: 32px;
+  font-weight: 300;
+  text-align: right;
+}
+
+/* line 233, ../scss/portfolio.scss */
+#welcome-text-div a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 102%;
+  color: #06243B;
+}
+
+/* line 246, ../scss/portfolio.scss */
+#welcome-footer {
+  width: 100%;
+  display: flex;
+}
+
+/* line 250, ../scss/portfolio.scss */
+#welcome-footer-not-home {
+  width: 100%;
+  display: none;
+}
+
+/* line 254, ../scss/portfolio.scss */
+.footer-nav {
+  display: none;
+  line-height: 56px;
+  font-size: 30px;
+  background-color: #0D4A7A;
+  color: white;
+  text-align: center;
+  font-weight: 400;
+  position: relative;
+}
+
+/* line 267, ../scss/portfolio.scss */
+.footer-div {
+  position: relative;
+  flex: 2;
+  -webkit-flex: 2 0 10px;
+  background-color: #f8fbfe;
+  opacity: .4;
+  cursor: pointer;
+}
+
+/* line 275, ../scss/portfolio.scss */
+.footer-img {
+  width: 100%;
+  min-height: 160px;
+}
+
+/* line 279, ../scss/portfolio.scss */
+.footer-div:hover {
+  opacity: 1;
+}
+
+/* line 282, ../scss/portfolio.scss */
+#footer-social {
+  background-color: #0D4A7A;
+  text-align: center;
+  padding-top: 22px;
+  flex: 3;
+  -webkit-flex: 3 0 10px;
+  min-width: 295;
+  max-width: 350;
+}
+
+/* line 293, ../scss/portfolio.scss */
+.social-link {
+  text-decoration: none;
+  margin: 12px;
+  color: white;
+  font-size: 36px;
+}
+
+/* line 301, ../scss/portfolio.scss */
+#footer-bio {
+  color: white;
+  font-weight: 200;
+  font-size: 14px;
+  padding: 8px;
+  text-align: left;
+  margin-top: 12px;
+}
+
+/* line 311, ../scss/portfolio.scss */
+#footer-bio-img {
+  width: 70px;
+  float: left;
+  padding-right: 6;
+  padding-left: 6;
+}
+
+/* line 318, ../scss/portfolio.scss */
+h1 {
+  font-size: 88px;
+  font-weight: 700;
+  padding-bottom: 12px;
+  color: #06243B;
+}
+
+/* line 326, ../scss/portfolio.scss */
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* line 330, ../scss/portfolio.scss */
+h3 {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 100;
+  color: lightslategray;
+}
+
+/* line 336, ../scss/portfolio.scss */
+h4 {
+  font-size: 58px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+/* line 342, ../scss/portfolio.scss */
+h5 {
+  font-size: 38px;
+  font-weight: 800;
+  padding-top: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* line 349, ../scss/portfolio.scss */
+.bullet {
+  font-size: 12px;
+  line-height: 42px;
+}
+
+@media screen and (max-width: 700px) {
+  /* line 356, ../scss/portfolio.scss */
+  #header-div {
+    flex-flow: column;
+    height: auto;
+  }
+
+  /* line 360, ../scss/portfolio.scss */
+  #color-stripe {
+    height: 10px;
+    display: none;
+  }
+
+  /* line 364, ../scss/portfolio.scss */
+  #triangle {
+    display: none;
+  }
+
+  /* line 367, ../scss/portfolio.scss */
+  #background-container {
+    background-color: #1A98FA;
+  }
+
+  /* line 370, ../scss/portfolio.scss */
+  #skills-container {
+    background-color: #0D4A7A;
+    color: white;
+    width: 100%;
+    flex: 0 0 auto;
+    height: auto;
+    padding-bottom: 28px;
+    font-weight: 200;
+    font-size: 28px;
+  }
+
+  /* line 383, ../scss/portfolio.scss */
+  .sub-skill {
+    font-size: 20px;
+  }
+
+  /* line 386, ../scss/portfolio.scss */
+  #myName {
+    width: 100%;
+    padding-bottom: 24px;
+  }
+
+  /* line 395, ../scss/portfolio.scss */
+  #welcome-div {
+    background-color: #C7EAFF;
+    box-sizing: border-box;
+    top: 0;
+    width: 100%;
+    padding-right: 5%;
+    margin-bottom: 12px;
+  }
+
+  /* line 403, ../scss/portfolio.scss */
+  #welcome-text-div {
+    color: #0D4A7A;
+    width: 98%;
+    min-width: 0;
+    font-size: 26px;
+    text-align: right;
+  }
+
+  /* line 410, ../scss/portfolio.scss */
+  h1 {
+    font-size: 64px;
+  }
+
+  /* line 414, ../scss/portfolio.scss */
+  #nav-bar {
+    display: none;
+  }
+
+  /* line 417, ../scss/portfolio.scss */
+  #welcome-footer {
+    flex-flow: row;
+    -webkit-flex-flow: row;
+    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+  }
+
+  /* line 423, ../scss/portfolio.scss */
+  #welcome-footer-not-home {
+    flex-flow: row;
+    -webkit-flex-flow: row;
+    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+    display: flex;
+  }
+
+  /* line 430, ../scss/portfolio.scss */
+  #footer-social {
+    max-width: none;
+    min-width: 100%;
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  /* line 437, ../scss/portfolio.scss */
+  #footer-bio {
+    max-width: 350;
+    margin: auto;
+    margin-top: 24px;
+  }
+
+  /* line 442, ../scss/portfolio.scss */
+  .footer-div {
+    overflow: hidden;
+    min-width: 25%;
+    height: 100px;
+    opacity: 1;
+  }
+
+  /* line 448, ../scss/portfolio.scss */
+  .footer-nav {
+    display: block;
+    flex: auto;
+    width: 100%;
+    height: 60px;
+  }
+}

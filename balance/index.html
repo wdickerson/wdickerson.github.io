@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Balance</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+				margin: 0px;
+				background: black;
+                background: url(sky.jpg);
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+				overflow: hidden;
+			}
+            #myCanvas {
+                width: 100vw;
+                height: 100vh;
+            }
+		</style>
+	</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<body>
+        
+        <canvas id="myCanvas"></canvas>
+
+		<script src="three.min.js"></script>
+        <script src="OpenSans_Regular.js"></script>
+		<script>
+
+		// Set up Three.js scene variables, and HTML video capture variables
+		var mesh, boxMesh, leftWallMesh, rightWallMesh, backWallMesh, frontWallMesh, textGeometry, textMesh, textHighGeometry, textHighMesh, camera, scene, renderer, boxX;
+        var oY = 45; var oZ = 0;
+		var canvas = document.getElementById("myCanvas");
+        
+        // Check fo vibrate API
+        var canVib = true;
+        if(!navigator.vibrate)
+            canVib = false;
+          
+        // Trying to add some stuff to make rotationwork
+        var ballC = new THREE.Object3D();
+        var xAxis = new THREE.Vector3(1,0,0);
+        var zAxis = new THREE.Vector3(0, 0, 1);
+            
+        initWebGL();
+		function initWebGL() {
+			// Add the camera
+			camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 170 );
+			camera.position.z = 80;
+            camera.position.y = 10;
+			scene = new THREE.Scene();
+
+			// Add the sphere
+			var geometry = new THREE.SphereGeometry( 4,33,33 );
+            //var material = new THREE.MeshPhongMaterial( { color: "#2194ce" } );
+            //material.map = THREE.ImageUtils.loadTexture('earth.jpg');
+            var ballTexture = THREE.ImageUtils.loadTexture('earth.jpg');
+            var material = new THREE.MeshPhongMaterial( { map: ballTexture } );
+			mesh = new THREE.Mesh(geometry, material);
+			//mesh.position.x = 0;
+			//mesh.position.y = -3.5;
+            //mesh.position.z = 0;
+            mesh.castShadow = true;
+            ballC.position.x = 0;
+            ballC.position.y = -3.5;
+            ballC.position.z = 0;
+            ballC.add(mesh);
+            scene.add(ballC);
+			//scene.add(mesh);
+            
+            // Add the platform
+            boxX = Math.floor( canvas.scrollWidth/11 );
+            console.log("boxX = " + boxX);
+			var boxGeometry = new THREE.BoxGeometry( boxX,5,70 );
+            var texture = THREE.ImageUtils.loadTexture( "./floor.jpg" );
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;         
+            texture.repeat.y = .4;
+            texture.offset.y = .4;    
+            var boxMaterial = new THREE.MeshLambertMaterial( { map: texture } );
+            boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+			boxMesh.position.x = 0;
+			boxMesh.position.y = -10;
+            boxMesh.position.z = -20;
+            boxMesh.receiveShadow = true;
+			scene.add(boxMesh);
+            
+            // Create the left wall, but don't add it
+            var leftWallGeometry = new THREE.BoxGeometry( .5,50,70 );
+            var leftWallMaterial = new THREE.MeshLambertMaterial( { color: 0xEE0000 } );
+			leftWallMesh = new THREE.Mesh(leftWallGeometry, leftWallMaterial);
+            leftWallMaterial.transparent = true;
+            leftWallMaterial.opacity = .5;
+			leftWallMesh.position.x = -boxX/2 - .25;
+			leftWallMesh.position.y = 12.5;
+            leftWallMesh.position.z = -20;
+            
+            // Create the right wall, but don't add it
+            var rightWallGeometry = new THREE.BoxGeometry( .5,50,70 );
+            var rightWallMaterial = new THREE.MeshLambertMaterial( { color: 0xEE0000 } );
+			rightWallMesh = new THREE.Mesh(rightWallGeometry, rightWallMaterial);
+            rightWallMaterial.transparent = true;
+            rightWallMaterial.opacity = .5;
+			rightWallMesh.position.x = boxX/2 + .25;
+			rightWallMesh.position.y = 12.5;
+            rightWallMesh.position.z = -20;
+            
+             // Create the back wall, but don't add it
+            var backWallGeometry = new THREE.BoxGeometry( boxX,50,.5 );
+            var backWallMaterial = new THREE.MeshLambertMaterial( { color: 0xEE0000 } );
+            backWallMesh = new THREE.Mesh(backWallGeometry, backWallMaterial);
+            backWallMaterial.transparent = true;
+            backWallMaterial.opacity = .5;
+			backWallMesh.position.x = 0;
+			backWallMesh.position.y = 12.5;
+            backWallMesh.position.z = -55;
+            //scene.add(backWallMesh);
+            
+            // Create the front wall, but don't add it
+            var frontWallGeometry = new THREE.BoxGeometry( boxX,50,.5 );
+            var frontWallMaterial = new THREE.MeshLambertMaterial( { color: 0xEE0000 } );
+			frontWallMesh = new THREE.Mesh(frontWallGeometry, frontWallMaterial);
+            frontWallMaterial.transparent = true;
+            frontWallMaterial.opacity = .5;
+			frontWallMesh.position.x = 0;
+			frontWallMesh.position.y = 12.5;
+            frontWallMesh.position.z = 15;
+            
+            // Add a spot light for shadow
+            var backLight = new THREE.SpotLight(0xFFFFFF);
+            backLight.position.x = 5;
+            backLight.position.y = 50;
+            backLight.position.z = 0;
+            backLight.target.position.set(0,0,0);
+            backLight.castShadow = true;
+            backLight.shadowDarkness = 0.5;
+            backLight.shadowMapWidth = 160;
+            backLight.shadowMapHeight = 120;
+            backLight.shadowCameraFar = 70;
+            backLight.shadowCameraNear = 1;
+            backLight.shadowCameraFov = 100;
+            //backLight.shadowCameraVisible = true;
+            scene.add(backLight);
+            scene.add(backLight.target);
+            
+            // Add a point light for natural lighting
+            var frontLight = new THREE.PointLight(0xFFFFFF);
+            frontLight.position.x = -15;
+            frontLight.position.y = 50;
+            frontLight.position.z = 55;
+            scene.add(frontLight);
+
+			// create the output canvas
+			renderer = new THREE.WebGLRenderer( 
+                { canvas: canvas, alpha: true } );
+			renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize( canvas.scrollWidth, canvas.scrollHeight );
+            renderer.setViewport(0, 0, canvas.scrollWidth, canvas.scrollHeight);
+            renderer.shadowMapEnabled = true;
+            renderer.shadowMapType = THREE.PCFSoftShadowMap;
+            
+            updateScene();
+		}
+        
+        // Keep some global variables updated with the device orientation
+        window.addEventListener("deviceorientation", onOrientation, false);
+        function onOrientation(e){
+            // alpha=x beta=y gamma=z
+            // target oY = 45;
+            // target oZ = 0; (it goes negative)
+            // oY gives you front and back. <45 means rolling away.
+            // oZ gives you left and right. <0 means rolling away.
+            // left and away need decrment, toward and right need increment
+            console.log("beta="+e.beta);
+            if(!e.beta)
+                return;
+            oY = Math.round( e.beta*10 )/10;
+            oZ = Math.round( e.gamma*10 )/10;
+        }
+            
+        // This is the heart of the logic
+        var backVib = frontVib = leftVib = rightVib = true;
+        function updateScene(blah,pushX,pZ){
+            var mZ = pZ || (oY - 45);
+            var mX = pushX || (oZ);
+            var needAnimate = false;
+
+            // If you need to change the Z coordinate
+            if(mZ!=0)
+            {
+                // Set the animte flag and increment/decrement
+                needAnimate = true;
+                ballC.position.z+=mZ;
+                //mesh.rotation.x += 3.14/(32/mZ);
+                rotateAroundWorldAxis(mesh, xAxis, 3.14/(16/mZ));
+      
+                // If you hit the boundary, hold at the boundary.
+                if(ballC.position.z<-55)
+                { 
+                    ballC.position.z=-55;
+                    //mesh.rotation.x -= 3.14/(32/mZ);
+                    rotateAroundWorldAxis(mesh, xAxis, -3.14/(16/mZ));
+                    scene.add(backWallMesh);
+                    curTime=0;
+                    if( backVib && canVib && navigator.vibrate(20) );
+                    backVib = false;
+                } else { 
+                    if( !backVib && scene.remove(backWallMesh) );
+                    backVib=true; 
+                }
+                // If you hit the boundary, hold at the boundary.
+                if(ballC.position.z>15)
+                {
+                    ballC.position.z=15;
+                    //mesh.rotation.x -= 3.14/(32/mZ);
+                    rotateAroundWorldAxis(mesh, xAxis, -3.14/(16/mZ));
+                    scene.add(frontWallMesh);
+                    curTime=0;
+                    if( frontVib && canVib && navigator.vibrate(20) );
+                    frontVib = false;
+                } else { 
+                    if( !frontVib && scene.remove(frontWallMesh) );
+                    frontVib=true; 
+                }
+            }
+            
+            // If you need to change the X coordinate
+            if(mX!=0)
+            {
+                // Set the animte flag and increment/decrement
+                needAnimate = true;
+                ballC.position.x+=mX;
+                rotateAroundWorldAxis(mesh, zAxis, -3.14/(16/mX));
+                
+                // If you hit the boundary, hold at the boundary.
+                if(ballC.position.x< -boxX/2)
+                {
+                    ballC.position.x= -boxX/2;
+                    rotateAroundWorldAxis(mesh, zAxis, 3.14/(16/mX));
+                    scene.add(leftWallMesh);
+                    curTime=0;
+                    if( leftVib && canVib && navigator.vibrate(20) );
+                    leftVib = false;
+                } else { 
+                    if( !leftVib && scene.remove(leftWallMesh) );
+                    leftVib=true; 
+                }
+                // If you hit the boundary, hold at the boundary.
+                if(ballC.position.x> boxX/2)
+                {
+                    ballC.position.x= boxX/2;
+                    rotateAroundWorldAxis(mesh, zAxis, 3.14/(16/mX));
+                    scene.add(rightWallMesh);
+                    curTime=0;
+                    if( rightVib && canVib && navigator.vibrate(20) );
+                    rightVib = false;
+                } else { 
+                    if( !rightVib && scene.remove(rightWallMesh) );
+                    rightVib=true; 
+                }
+            }
+            
+            // if the animate flag is set
+            if( needAnimate )
+            {
+                renderer.render( scene, camera );
+            }
+
+            // Run this logic for each frame
+            requestAnimationFrame( updateScene );
+        }
+            
+        // This key listener just runs the above logic
+        // with the arrow keys, so you can sort of play
+        // with the keyboard if a gyroscope isn't available.
+        document.addEventListener('keydown', keyDown, false);
+        function keyDown(e) {
+            if(e.keyCode==38) { //up
+                oY = 45; // in case device orientation is unavailable
+                updateScene(0,0,-1);
+            }
+            if(e.keyCode==40) { //down
+                oY = 45;
+                updateScene(0,0,1);
+            }
+            if(e.keyCode==37) { //left
+                updateScene(0,-1,0);
+            }
+            if(e.keyCode==39) { //right
+                updateScene(0,1,0);
+            }
+        }
+        
+        // You need to redisgn this timer. It uses way too
+        // much CPU. Probably bc it's creating new geometries.
+        var curTime = 0;
+        var highTime = 0;
+        setInterval(updateTimer, 1000);
+        function updateTimer(){ 
+            
+            curTime+=1;
+            // Add some text
+            scene.remove(textMesh);
+            //var disCur = ( Math.floor( (curTime-.1)*10 )/10 ).toFixed(1);
+            textGeometry = new THREE.TextGeometry(curTime-1, {font: 'open sans', size: 6, height: 0.1});
+            var textMaterial = new THREE.MeshLambertMaterial( { color: 0x1580B9 });
+            textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            textMesh.position.x = -boxX/4 - 8;
+			textMesh.position.y = 40;
+            textMesh.position.z = -20;
+            scene.add(textMesh);
+            
+            if(curTime >= highTime)
+            {
+                highTime = curTime;
+                //var disHigh = disCur;
+                scene.remove(textHighMesh);
+                textHighGeometry = new THREE.TextGeometry(highTime-1, {font: 'open sans', size: 6, height: 0.1});
+                var textHighMaterial = new THREE.MeshLambertMaterial( { color: 0x00AA00 });
+                textHighMesh = new THREE.Mesh(textHighGeometry, textHighMaterial);
+                textHighMesh.position.x = boxX/4 - 9;
+                textHighMesh.position.y = 40;
+                textHighMesh.position.z = -20;
+                scene.add(textHighMesh);
+            }
+            renderer.render( scene, camera );
+        }
+            
+        // Rotate an object around an arbitrary axis in world space
+        var rotWorldMatrix;
+        function rotateAroundWorldAxis(object, axis, radians) {
+            rotWorldMatrix = new THREE.Matrix4();
+            rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
+
+            // old code for Three.JS pre r54:
+            //  rotWorldMatrix.multiply(object.matrix);
+            // new code for Three.JS r55+:
+            rotWorldMatrix.multiply(object.matrix); // pre-multiply
+
+            object.matrix = rotWorldMatrix;
+
+            // old code for Three.js pre r49:
+            // object.rotation.getRotationFromMatrix(object.matrix, object.scale);
+            // old code for Three.js pre r59:
+            // object.rotation.setEulerFromRotationMatrix(object.matrix);
+            // code for r59+:
+            object.rotation.setFromRotationMatrix(object.matrix);
+        }
+                             
+		</script>
+	</body>
+</html>
+
+

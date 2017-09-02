@@ -1,0 +1,365 @@
+<html>
+    
+<head>
+    <link href="css/lineart.css" rel="stylesheet" type="text/css" />
+    <title>LineArt</title>
+</head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<body>
+    <div id="container">
+        <canvas id="myColorCanvas" ></canvas>  
+        <canvas id="myLineCanvas" ></canvas>  
+        <canvas id="myHiddenCanvas" ></canvas>  
+        <canvas id="myTempCanvas" ></canvas>  
+        <div id="topBar" class="bar">
+        Swipe or click+drag to make lines
+        </div>
+        <div id="bottomBar" class="bar">
+        Tap or click to fill with color
+        </div>
+        <div id="leftBar" class="bar"></div>
+        <div id="rightBar" class="bar"></div>
+        <div id="cover"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    
+    //console.log(document.getElementById("topBar").offsetHeight);
+    var cover = document.getElementById("cover");
+    cover.style.height = window.innerHeight - 
+                         document.getElementById("topBar").offsetHeight - 
+                         document.getElementById("bottomBar").offsetHeight;
+    cover.style.width = window.innerWidth - 
+                         document.getElementById("leftBar").offsetWidth - 
+                         document.getElementById("rightBar").offsetWidth;
+    cover.style.top = document.getElementById("topBar").offsetHeight;
+    cover.style.left = document.getElementById("leftBar").offsetWidth;
+
+    var CS = 1; // myColorCanvas scale
+    var cc = document.getElementById("myColorCanvas");
+    var ctxc = cc.getContext("2d");
+    ctxc.canvas.width  = window.innerWidth/CS;
+    ctxc.canvas.height = window.innerHeight/CS;
+    
+    var HS = 2; // myHiddenCavas scale
+    var ch = document.getElementById("myHiddenCanvas");
+    var ctxh = ch.getContext("2d");
+    ctxh.canvas.width  = window.innerWidth/HS;
+    ctxh.canvas.height = window.innerHeight/HS;
+//    ctxh.canvas.width  = 600;//window.innerWidth/HS;
+//    ctxh.canvas.height = 600 * (window.innerHeight / window.innerWidth); //window.innerHeight/HS;
+//    var HS = window.innerWidth / 600;
+    
+    var LS = 1; // myLineCavas scale
+    var cl = document.getElementById("myLineCanvas");
+    var ctxl = cl.getContext("2d");
+    ctxl.canvas.width  = window.innerWidth/LS;
+    ctxl.canvas.height = window.innerHeight/LS;
+    
+    var TS = 2; // myTempCanvas scale
+    var ct = document.getElementById("myTempCanvas");
+    var ctxt = ct.getContext("2d");
+    ctxt.canvas.width  = window.innerWidth/TS;
+    ctxt.canvas.height = window.innerHeight/TS;
+    
+    ctxh.strokeStyle="rgba(0,0,0,255)";
+    ctxh.lineWidth = 1;
+    ctxh.beginPath();
+    ctxh.moveTo(60/HS,60/HS);
+    ctxh.lineTo((window.innerWidth-60)/HS,60/HS);
+    ctxh.stroke();
+    ctxh.lineTo((window.innerWidth-60)/HS,(window.innerHeight-60)/HS);
+    ctxh.stroke();
+    ctxh.lineTo(60/HS,(window.innerHeight-60)/HS);
+    ctxh.stroke();
+    ctxh.lineTo(60/HS,56/HS);
+    ctxh.stroke();
+    
+    // Add all your event handlers
+    document.addEventListener('mousedown', onMouseDown, false);
+    document.addEventListener('mousemove', onMouseMove, false);
+    document.addEventListener('mouseup', onMouseUp, false);
+    document.addEventListener('touchstart', onTouchStart, false);
+    document.addEventListener('touchmove', onTouchMove, false);
+    document.addEventListener('touchend', onTouchEnd, false);
+
+    var xStart, yStart, xStop, yStop, xCur, yCur;
+    function onMouseDown(e) 
+    { 
+        xStart = e.pageX;     yStart = e.pageY;
+    }
+    
+    function onMouseMove(e) 
+    {
+        xCur = e.pageX;     yCur = e.pageY;
+        
+        if( e.which == 1)
+        {
+            showLine(xStart,yStart,xCur,yCur);
+        }
+    }
+    
+    function onMouseUp(e) 
+    {
+        xStop = e.pageX;     yStop = e.pageY;
+        //alert(xStop);
+        
+        if( (Math.abs(xStop-xStart) > 10 || Math.abs(yStop-yStart) > 10) )
+        {
+            drawLine(xStart,yStart,xStop,yStop);
+        }
+        else // fill a region
+        {
+            fillRegion(xCur,yCur);
+        }
+    }
+
+// delete after testing on android
+//    var xTouchStart, yTouchStart, xTouchStop, yTouchStop, xTouchMove, yTouchMove, abortMulti;
+    function onTouchStart(e) 
+    {   
+        e.preventDefault();
+        console.log("touch!!");
+        abortMulti = false;
+        
+// delete after testing on android
+//        xTouchStart = e.changedTouches[0].pageX; yTouchStart = e.changedTouches[0].pageY;
+        xStart = e.changedTouches[0].pageX; yStart = e.changedTouches[0].pageY;
+
+        
+        if(e.touches.length>1)
+        {
+            abortMulti = true;
+        }
+    }
+    
+    function onTouchMove(e) 
+    {
+        e.preventDefault();
+        if(abortMulti == false)
+        {   
+// delete after testing on android
+//            xTouchMove = e.touches[0].pageX;       yTouchMove = e.touches[0].pageY;
+            xCur = e.touches[0].pageX;       yCur = e.touches[0].pageY;
+
+// delete after testing on android
+//            showLine(xTouchStart,yTouchStart,xTouchMove,yTouchMove);
+            showLine(xStart,yStart,xCur,yCur);
+
+        }
+    }
+    
+    function onTouchEnd(e) 
+    {
+        e.preventDefault(); //to keep it from throwing "mouseup" event
+        if(abortMulti==false)
+        {
+            ctxt.clearRect(0,0,window.innerWidth/TS,window.innerHeight/TS);
+// delete after testing on android            
+//            xTouchStop = e.changedTouches[0].pageX;  yTouchStop = e.changedTouches[0].pageY;
+            xStop = e.changedTouches[0].pageX;  yStop = e.changedTouches[0].pageY;
+
+
+            // If it was a swipe (not a tap)
+//            if( ( Math.abs( xTouchStart - xTouchStop ) >= 16 ) ||
+//                ( Math.abs( yTouchStart - yTouchStop ) >= 16 )   ) 
+            if( ( Math.abs( xStart - xStop ) >= 16 ) ||
+                ( Math.abs( yStart - yStop ) >= 16 )   )
+            {
+// delete after testing on android
+//                drawLine(xTouchStart,yTouchStart,xTouchStop,yTouchStop);
+                drawLine(xStart,yStart,xStop,yStop);
+
+            }
+            else 
+            {
+// delete after testing on android
+//                fillRegion(xTouchStop,yTouchStop);
+                fillRegion(xStop,yStop);
+
+            }
+        }
+    }
+    
+    document.onkeypress = function(e) {
+
+        if(e.keyCode == 32) // that's a "space"
+        {
+            fillRegion(xCur,yCur);
+        }
+        
+        if (e.keyCode==113) // that's a "q"
+        {
+            alert("data= "+ ctxh.getImageData(xCur/HS, yCur/HS, 1, 1).data + 
+                  " xCur= " + xCur + " yCur = " + yCur);
+        }
+    }
+
+function showLine(xStartSL,yStartSL,xStopSL,yStopSL)
+{
+    ctxt.clearRect(0,0,window.innerWidth/LS,window.innerHeight/LS);
+    ctxt.beginPath();
+    ctxt.moveTo(xStartSL/TS,yStartSL/TS);
+    ctxt.lineWidth = 2;
+    ctxt.lineTo(xStopSL/TS,yStopSL/TS);
+    ctxt.stroke();  
+}
+
+var drawHelp = true;
+function drawLine(xStartDL,yStartDL,xStopDL,yStopDL)
+{
+    // clear myTempCanvas
+    ctxt.clearRect(0,0,window.innerWidth/TS,window.innerHeight/TS);
+
+    // draw on myHiddenCavas
+    ctxh.beginPath();
+    ctxh.moveTo(xStartDL/HS,yStartDL/HS);
+    ctxh.lineWidth = 1;
+    ctxh.lineTo(xStopDL/HS,yStopDL/HS);
+    ctxh.stroke();
+
+    // draw on myLineCanvas
+    ctxl.beginPath();
+    ctxl.moveTo(xStartDL/LS,yStartDL/LS);
+    ctxl.lineWidth = 6;
+    ctxl.lineTo(xStopDL/LS,yStopDL/LS);
+    ctxl.stroke();
+    
+    if(drawHelp)
+    {
+        document.getElementById("topBar").innerHTML = "";
+        drawHelp = false;
+    }
+}
+    
+var colors = ["red","orange","yellow","green","blue","purple","lightcyan"];
+var iCol = 0;
+var fillHelp = true;
+function fillRegion(x,y)
+{
+    ctxc.fillStyle=colors[iCol];
+    // Find boundary
+    B = mooreTrace( Math.ceil(x/HS),Math.ceil(y/HS) );  
+    // fill the region bounded by b
+    var bp = B.pop();
+    ctxc.beginPath();
+    ctxc.moveTo( bp[0] * (HS/CS) ,bp[1] * (HS/CS) );
+    while( B.length > 0 )
+    {
+        bp = B.pop();
+        ctxc.lineTo(bp[0] * (HS/CS) ,bp[1] * (HS/CS) );
+    }
+    ctxc.fill();
+    iCol++;
+    if(iCol >= colors.length)
+    {
+        iCol = 0;
+    }
+    
+    if(fillHelp)
+    {
+        document.getElementById("bottomBar").innerHTML = "";
+        fillHelp = false;
+    }
+}
+    
+function mooreTrace(x,y)
+{
+    // This function is the boundary condition. It returns TRUE if
+    // pix is a boundary pixel and FALSE otherwise. pix is in the form [x,y]
+    function isBoundary(pix)
+    {
+ 
+        if ( ctxh.getImageData(Math.ceil(pix[0]), Math.ceil(pix[1]), 1, 1).data[3] > 20 )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    // This function moves to the next counter-clockwise neighbor
+    // of cc in the Moore Neighborhood of pc.
+    function moveCC(cc,pc)
+    {
+        if(cc[1] == pc[1]-1)
+        {
+            //check x
+            if(cc[0]==pc[0]-1)
+                return [ pc[0]-1 , pc[1] ];
+            if(cc[0]==pc[0])
+                return [ pc[0]-1 , pc[1]-1 ];
+            if(cc[0]==pc[0]+1)
+                return [ pc[0] , pc[1]-1 ];
+        }
+        if(cc[1] == pc[1])
+        {
+            //check x
+            if(cc[0]==pc[0]-1)
+                return [ pc[0]-1 , pc[1]+1 ];
+            if(cc[0]==pc[0]+1)
+                return [ pc[0]+1 , pc[1]-1 ];
+        }
+        if(cc[1] == pc[1]+1)
+        {
+            //check x
+            if(cc[0]==pc[0]-1)
+                return [ pc[0] , pc[1]+1 ];
+            if(cc[0]==pc[0])
+                return [ pc[0]+1 , pc[1]+1 ];
+            if(cc[0]==pc[0]+1)
+                return [ pc[0]+1 , pc[1] ];
+        }
+    }
+
+    // declare vaiables
+    var xp = x;
+    var yp = y;
+    var B = new Array();
+    var s=[0,0];
+    var p=[0,0];
+    var c=[0,0];
+    var b=[0,0];
+
+    //Travel up from xp,yp to find s
+    for (k=yp;k>=0;k--)
+    {
+        // if boundary pixel ...you found s
+        if ( isBoundary([xp,k]) )
+        {
+            B.push([xp,k]);
+            s = [xp,k];
+            p = s;
+            b = [xp,k+1];
+            c = moveCC(b,p);
+            break;
+        }
+    } // now all your initial conditions are set and you're ready to trace
+
+    //var q = 0;
+    while ( !( c[0]==s[0] && c[1]==s[1] ) )
+    {
+        // if c is a boundary pixel
+        if (isBoundary(c))
+        {
+            B.push(c);
+            b = p;
+            p = c;
+            c = moveCC(b,p);
+            //q++;
+        }
+        else
+        {
+            b = c;
+            c = moveCC(b,p);
+            //q++;
+        }
+    }
+    //console.log("q= " + q);
+    return B;
+}
+
+</script>
+

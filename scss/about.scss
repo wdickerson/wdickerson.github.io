@@ -1,0 +1,206 @@
+@import "vars.scss";
+
+body{
+    //background-color: $bgLight;
+    background-color: $bgBlue;
+}
+#about-div {
+    //background-color: $bgLight;
+    //background-color: $navBlue;
+    box-sizing: border-box;
+    padding: 40px;
+    display: flex;
+    flex-flow: row-reverse;
+    -webkit-flex-flow: row-reverse;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: center;
+}
+.about {
+    margin: 6px;
+    background-color: $bgLight;
+    //background-color: lighten($bgLight,5%);
+    //background-color: lighten($coreBlue,60%);
+}
+#glance-div {
+    box-sizing: border-box;
+    flex: 2;
+    min-width: 400px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+#glance-figure {
+    font-size: 32px;
+    width: 100%;
+    max-height: 360px;
+    flex: 1 1 10px;
+    -webkit-flex: 1 1 auto; /* this */
+}
+#glance-header {
+    flex: 1 1 10px;
+    -webkit-flex: 1 1 auto; /* this */
+}
+#about-me-div {
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 300;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+}
+#about-me-figure {
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 20px;
+    padding: 14px;
+    padding-top: 6px;
+}
+#about-me-figure p {
+    margin-bottom: 6px;
+}
+#hours-chart {   
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    background-color: lighten($bgDark,55%);
+}
+
+#figure1-div {
+    background-color: $navBlue;
+    //background-color: darken($bgLight,18%);
+    box-sizing: border-box;
+    flex: 3;
+    font-size: 14px;
+    font-weight: 200;
+}
+#figure1-header {
+    text-align: right;
+    flex: 1;
+}
+#figure1-pc {
+    display: block;
+}
+#figure1-mobile {
+    display: none;
+}
+.figure2-div {
+    flex: 2;
+    background-color: $bgLight;
+    //background-color: lighten($bgLight,5%);
+    display: flex;
+    flex-flow: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.figure2-svg-div {
+    flex: 2 2 auto;
+}
+.figure2-text-div {
+    flex: 2 2 auto;
+    font-size: 2.4vw;
+    margin: 20px;
+    margin-top: 0px;
+    line-height: 2.9vw;
+    font-weight: 300;
+    text-align: center;
+}
+.pie-label {
+    text-anchor: middle;
+    fill: $coreBlue;
+    width: 50px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.figure2-header {
+    text-align: right;
+    flex: 1 1 auto;
+    height: 52px;
+    max-height: 52px;
+}
+.figure-arrow {
+    fill: $bgLight;
+}
+.topics-axis {
+    font-weight: 600;
+}
+.topics-label {
+    cursor: pointer;
+}
+.bars {
+    fill: $coreBlue;
+}
+.selected-bar {
+    stroke: $bgLight;
+    stroke-width: 2;
+}
+.up-shift-line {
+    stroke-width: 5;
+    fill: none;
+}
+.down-shift-line {
+    stroke-width: 3;
+    fill: none;
+}
+.up1-line, .down2-line {
+    stroke: rgb(27,140,224);
+}
+.up2-line, .down3-line {
+    stroke: rgb(235,167,153);
+}
+.up3-line, .down4-line {
+    stroke: rgb(53,222,203);
+}
+
+@media screen and (max-width: 700px) {
+
+    #about-div {
+        padding: 16px;
+        flex-flow: column;
+        -webkit-flex-flow: column;
+    }
+    #glance-div {
+    }
+    .about {
+        margin: 0px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    #about-me-div {
+        min-width: 284;
+        max-width: none;
+        -webkit-flex: 1 1 auto; /* this */
+    }
+    #glance-div {
+        min-width: 0;
+        -webkit-flex: 1 1 auto; /* this */
+    }
+    #glance-figure {
+        //width: 100%;
+        max-height: 60vw;
+    }
+    #hours-chart { 
+        flex-flow: column;
+    }
+    #figure1-pc {
+        display: none;
+    }
+    #figure1-mobile {
+        display: block;
+    }
+    .figure1-div {
+        flex: 3 3 auto;
+    }
+    .figure2-div {
+        flex: 2 2 auto;
+    }
+    .figure2-text-div {
+        margin-top: 0px;
+        font-size: 1.5rem;
+        line-height: 1.7rem;
+    }
+
+}

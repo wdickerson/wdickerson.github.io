@@ -1,0 +1,34 @@
+<html>
+<head>
+</head>
+<body>
+
+
+<p>The `.data(yourData).enter()` function is great when you want to logically link some SVG elements to an array of objects. One element to one object. We refer to this as "binding" data. What if each object contains a property `nestedData` which is itself an array? Maybe you want to have an SVG element for each object in `yourData`, and also have an SVG element for each value in `nestedData`.</p>
+
+<p>D3 let's us "nest" our data bindings to accomplish this.</p>
+
+Consider an example where we are showing some stations of the NYC Subway. Here's an array of objects:
+
+<iframe width="60%" height="300" src="//jsfiddle.net/wilburrr90/ws1thrgu/embedded/js/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>For simplicity, we're using x and y coordinates instead of latitude and longitude, and we're not worrying about a map of Manhattan.</p>
+
+<p>First, let's prepare an SVG element to draw on:</p>
+
+<iframe width="60%" height="300" src="//jsfiddle.net/wilburrr90/rbbbkznn/embedded/js,html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                
+<p>Now, let's draw a symbol at the location of each station. Our symbol is a white "M" inside a blue square.</p>
+
+<iframe width="60%" height="300" src="//jsfiddle.net/wilburrr90/2upnhzud/embedded/js,html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+<p>So far so good, but now we would like to show the colors (of subway lines) that are served at each station.</p>
+
+<iframe width="60%" height="300" src="//jsfiddle.net/wilburrr90/5r17xqfg/embedded/js,html,result/dark/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                 
+<p>For more examples of nesting data in D3, see Mike Bostock's explanation here: https://bost.ocks.org/mike/nest/</p>
+
+</body>
+</html>
+
+

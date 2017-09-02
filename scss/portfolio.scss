@@ -1,0 +1,455 @@
+@import "compass";
+@import "compass/reset";
+@import "vars.scss";
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+body {
+    //background-color: white;
+    //background-color: $bgLight;
+    background-color: $bgBlue;
+    font-family: 'Source Sans Pro', sans-serif;
+    //color: $textBlue;
+    //color: $coreBlue;
+    color: $textBlue;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#background-container {
+    position: absolute;
+    overflow: hidden;
+    //background-color: lighten($bgDark,20%);
+    //background-color: lighten($bgDark,40%);
+    //background-color: darken($bgLight,8%);    
+    //background-color: lighten($navBlue,40%);    
+    background-color: $bgLight;    
+    z-index:-1;
+    top: 0;
+    left: 0;
+    height: 180px;
+    width: 100vw;
+}
+
+#triangle {
+    min-height: 600px;
+    //fill: $bgDark;
+    //fill: $coreBlue;
+    fill: $navBlue;
+}
+.navBlue {
+    fill: $navBlue;
+}
+.textBlue {
+    fill: $coreBlue;
+}
+.bgLight {
+    fill: $bgLight;
+}
+.col1 {
+    fill: lighten($col1,3%);
+}
+.col2 {
+    //fill: $col2;
+    fill: lighten($col2,10%);
+}
+.col3 {
+    //fill: $col3;
+    fill: lighten($col3,8%);
+}
+.col4 {
+    //fill: $col4;
+    fill: lighten($col4,10%);
+}
+.col5 {
+    fill: $col5;
+}
+
+#header-div {
+    display: flex;
+    flex-flow: row;
+    height: 162px;
+}
+#myName {
+    //flex: 1;
+    //color: white;
+    box-sizing: border-box;
+    color: $textBlue;
+    background-color: $navBlue;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.0;
+    width: 272px;
+    min-width: 272px;
+    //margin-top: 28px;
+    padding-top: 28px;
+    //margin-left: 24px;
+    padding-left: 24px;
+    float: left;
+}
+#myLocation {
+    font-size: 26px;
+    font-weight: 200;
+    //color: lighten($bgDark,26%);
+    //color: $bgLight;
+    color: white;
+}
+
+#color-stripe {
+    //flex: 1;
+    width: 240px;
+}
+#color-stripe-svg {
+    width: 100%;
+    height: 100%;
+}
+.aa {
+    //filter: url(#dropshadow);
+}
+
+#skills-container {
+    flex: 1;
+    //height: 112px;
+    height: 162px;
+    overflow: hidden;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 29px;
+    font-weight: 300;
+    //width: calc(100% - 315px);
+    //width: 390px;
+    min-width: 225px;
+    box-sizing: border-box;
+    padding-top: 32px;
+    background-color: $bgLight;
+    //padding-bottom: 112px;
+}
+.skill {
+    height: 112px;
+}
+.sub-skill{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+#nav-bar{
+    box-sizing: border-box;
+    width: 100%;
+    height: 56px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: flex;
+    //background-color: $bgDark;
+    //border-bottom: 2px solid $coreBlue;
+    box-shadow: 0px 2px 3px 0px gray;
+}
+.slash-div {
+    background-color: $navBlue;
+}
+.slash-svg-cur {
+    //background-color: lighten($bgDark,20%);;
+    background-color: $bgLight;
+}
+.slash-cur-nav {
+    fill: $navBlue;
+}
+.slash-svg {
+    width: 24; 
+    height: 100%;
+    //fill: $bgDark;
+    fill: lighten($bgDark,40%);
+}
+.bx-div {
+    box-sizing: border-box;
+    flex: 1;
+    height: 100%;
+    line-height: 56px;
+    font-size: 20px;
+    background-color: $navBlue;
+    //color: lighten($bgDark,20%);
+    //color: lighten($bgLight,6%);
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    position: relative;
+}
+.current-bx-div {
+    //background-color: lighten($bgDark,20%);
+    box-sizing: border-box;
+    background-color: $bgLight;
+    //background-color: $coreBlue;
+    //color: $navBlue;
+    color: $coreBlue;
+    width: 180%;
+    font-weight: 700;
+}
+#blank-nav-div {
+    flex: 7;
+}
+#b4-div {
+    padding-right: 6px;
+}
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+}
+.empty-span {
+    position:absolute; 
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+}
+
+#welcome-div {
+    //background-color: $bgLight;
+    //background-color: #D59E8C;
+    //background-color: $bgDark;
+    //background-color: lighten($bgDark,20%);
+    background-color: $navBlue;
+    box-sizing: border-box;
+    height: calc( 100vh - 290px );
+    min-height: 250px;
+    width: 100%;
+    padding: 42px;
+    padding-right: 8%;
+}
+#welcome-text-div {
+    //color: lighten($bgDark,26%);
+    //color: $coreBlue;
+    color: white;
+    width: 90%;
+    float: right;
+    box-sizing: border-box;
+    min-width: 600px;
+    font-size: 32px;
+    font-weight: 300;
+    text-align: right;
+}
+#welcome-text-div a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 102%;
+    //margin-bottom: -25px;
+    //line-height: 5px;
+    //border-bottom: 3px solid $textBlue;
+    color: $textBlue;
+}
+#welcome-text-div a:visited {
+    //color: orange;
+}
+
+#welcome-footer {
+    width: 100%;
+    display: flex;
+}
+#welcome-footer-not-home {
+    width: 100%;
+    display: none;
+}
+.footer-nav {
+    display: none;
+    line-height: 56px;
+    font-size: 30px;
+    //background-color: $navBlue;
+    background-color: $coreBlue;
+    //color: lighten($coreBlue,72%);
+    //color: lighten($bgLight,6%);
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    position: relative;
+}
+.footer-div {
+    position: relative;
+    flex: 2;
+    -webkit-flex: 2 0 10px;
+    background-color: lighten($coreBlue,72%);
+    opacity: .4;
+    cursor: pointer;
+}
+.footer-img {
+    width: 100%;
+    min-height: 160px;
+}
+.footer-div:hover {
+    opacity: 1;
+}
+#footer-social {
+    //background-color: $navBlue;
+    //background-color: $bgDark;
+    background-color: $coreBlue;
+    text-align: center;
+    padding-top: 22px;
+    flex: 3;
+    -webkit-flex: 3 0 10px;
+    min-width: 295;
+    max-width: 350;
+}
+.social-link {
+    text-decoration: none;
+    margin: 12px;
+    //color: lighten($coreBlue,72%);
+    //color: lighten($bgLight,6%);
+    color: white;
+    font-size: 36px;
+}
+#footer-bio {
+    //color: lighten($coreBlue,72%);
+    //color: lighten($bgLight,6%);
+    color: white;
+    font-weight: 200;
+    font-size: 14px;
+    padding: 8px;
+    text-align: left;
+    margin-top: 12px;
+}
+#footer-bio-img {
+    width: 70px;
+    float: left;
+    padding-right: 6;
+    padding-left: 6;
+}
+
+h1 {
+    font-size: 88px;
+    font-weight: 700;
+    padding-bottom: 12px;
+    //color: $coreBlue;
+    color: $textBlue;
+    //color: white;
+}
+h2 {
+    font-size: 30px;
+    font-weight: 600;
+}
+h3 {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 100;
+    color: lightslategray;
+}
+h4 {
+    font-size: 58px;
+    font-weight: 500;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+}
+h5 {
+    font-size: 38px;
+    font-weight: 800;
+    padding-top: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.bullet {
+    font-size: 12px;
+    line-height: 42px;  
+}
+
+@media screen and (max-width: 700px) {
+
+    #header-div {
+        flex-flow: column;
+        height: auto;
+    }
+    #color-stripe {
+        height: 10px;
+        display: none;
+    }
+    #triangle {
+        display: none;
+    }
+    #background-container {
+        background-color: $navBlue;
+    }
+    #skills-container {
+        //box-sizing: border-box;
+        background-color: $coreBlue;
+        //color: lighten($coreBlue,72%);
+        color: white;
+        width: 100%;
+        flex: 0 0 auto;
+        height: auto;
+        padding-bottom: 28px;
+        //margin-bottom: 88px;
+        font-weight: 200;
+        font-size: 28px;
+    }
+    .sub-skill {
+        font-size: 20px;
+    }
+    #myName {
+        //margin-top: 20px;
+        //margin-bottom: 20px;
+        //box-sizing: border-box;
+        width: 100%;
+        padding-bottom: 24px;
+        //height: 120px;
+    }
+    
+    #welcome-div {
+        background-color: $bgBlue;
+        box-sizing: border-box;
+        top: 0;
+        width: 100%;
+        padding-right: 5%;
+        margin-bottom: 12px;
+    }
+    #welcome-text-div {
+        color: $coreBlue;
+        width: 98%;
+        min-width: 0;
+        font-size: 26px;
+        text-align: right;
+    }
+    h1 {
+        font-size: 64px;
+    }
+      
+    #nav-bar {
+        display: none;
+    }
+    #welcome-footer {
+        flex-flow: row;
+        -webkit-flex-flow: row;
+        flex-wrap: wrap-reverse;
+        -webkit-flex-wrap: wrap-reverse;
+    }
+    #welcome-footer-not-home {
+        flex-flow: row;
+        -webkit-flex-flow: row;
+        flex-wrap: wrap-reverse;
+        -webkit-flex-wrap: wrap-reverse;
+        display: flex;
+    }
+    #footer-social {
+        //background-color: $navBlue;
+        max-width: none;
+        min-width: 100%;
+        width: 100%;
+        padding-bottom: 10px;
+    }
+    #footer-bio {
+        max-width: 350;
+        margin: auto;
+        margin-top: 24px;
+    }
+    .footer-div {
+        overflow: hidden;
+        min-width: 25%;
+        height: 100px;
+        opacity: 1;
+    }
+    .footer-nav {
+        display: block;
+        flex: auto;
+        width: 100%;
+        height: 60px;
+    }
+
+}

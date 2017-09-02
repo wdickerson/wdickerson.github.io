@@ -1,0 +1,57 @@
+/* line 3, ../scss/projects.scss */
+body {
+  background-color: #C7EAFF;
+}
+
+/* line 7, ../scss/projects.scss */
+#projects-div {
+  box-sizing: border-box;
+  top: 0;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-flow: row-reverse;
+  -webkit-flex-flow: row-reverse;
+  flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  justify-content: center;
+}
+
+/* line 21, ../scss/projects.scss */
+.project {
+  flex: 1;
+  -webkit-flex: 1 1 15em;
+  /* this */
+  min-width: 240px;
+  margin: 6px;
+  background-color: #e1effa;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* line 35, ../scss/projects.scss */
+.proj-text-div {
+  padding: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+/* line 40, ../scss/projects.scss */
+.project-img {
+  width: 100%;
+  float: left;
+}
+
+/* line 44, ../scss/projects.scss */
+.github-link {
+  text-decoration: none;
+  color: lightslategray;
+  font-size: .75em;
+}
+
+@media screen and (max-width: 700px) {
+  /* line 52, ../scss/projects.scss */
+  #projects-div {
+    padding: 16px;
+  }
+}

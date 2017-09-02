@@ -1,0 +1,95 @@
+/* line 9, ../scss/contact.scss */
+body {
+  background-color: #C7EAFF;
+}
+
+/* line 12, ../scss/contact.scss */
+#contact-div {
+  padding: 40px;
+}
+
+/* line 15, ../scss/contact.scss */
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* line 20, ../scss/contact.scss */
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+/* line 26, ../scss/contact.scss */
+textarea {
+  font-size: 1rem;
+}
+
+/* line 30, ../scss/contact.scss */
+.form-div {
+  box-sizing: border-box;
+  margin: auto;
+  margin-bottom: 12px;
+  padding: 16px;
+  padding-top: 0px;
+  padding-bottom: 4px;
+  padding-right: 0px;
+  width: 80%;
+  max-width: 620px;
+  border-left: 6px solid #0D4A7A;
+}
+
+/* line 42, ../scss/contact.scss */
+.form-button {
+  background-color: #1A98FA;
+  color: white;
+  width: 110px;
+  height: 50px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.4rem;
+  border: none;
+  margin-top: 6px;
+}
+
+/* line 53, ../scss/contact.scss */
+.form-button:hover {
+  background-color: #0D4A7A;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* line 61, ../scss/contact.scss */
+#thanks-div {
+  width: 80%;
+  max-width: 520px;
+  min-height: 200px;
+  margin: auto;
+  padding: 42px;
+  padding-right: 8%;
+}
+
+/* line 69, ../scss/contact.scss */
+#thanks-text-div {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 700px) {
+  /* line 76, ../scss/contact.scss */
+  #contact-div {
+    padding: 16px;
+  }
+
+  /* line 79, ../scss/contact.scss */
+  .form-div {
+    width: 100%;
+  }
+
+  /* line 82, ../scss/contact.scss */
+  #thanks-div {
+    padding: 24px;
+    width: 100%;
+  }
+}

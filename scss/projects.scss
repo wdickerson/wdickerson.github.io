@@ -1,0 +1,56 @@
+@import "vars.scss";
+
+body{
+    //background-color: $bgLight;
+    background-color: $bgBlue;
+}
+#projects-div {
+    box-sizing: border-box;
+    top: 0;
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-flow: row-reverse;
+    -webkit-flex-flow: row-reverse;
+    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+    justify-content: center;
+    //background-color: lighten($bgDark,20%);
+    //background-color: $bgLight;
+}
+.project {
+    flex: 1;
+    -webkit-flex: 1 1 15em; /* this */
+    min-width: 240px;
+    margin: 6px;
+    background-color: $bgLight;
+    //background-color: white;
+    //background-color: darken($bgLight,5%);
+    //background-color: lighten($bgLight,7%);
+    //background-color: lighten($bgLight,5%);
+    font-size: 20px;
+    font-weight: 400;
+    //box-shadow: 0px 0px 2px 2px lightgray;
+}
+.proj-text-div {
+    padding: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+.project-img {
+    width: 100%;
+    float: left;
+}
+.github-link {
+    text-decoration: none;
+    color: lightslategray;
+    font-size: .75em;
+}
+
+@media screen and (max-width: 700px) {
+
+    #projects-div {
+        padding: 16px;
+    }
+
+}

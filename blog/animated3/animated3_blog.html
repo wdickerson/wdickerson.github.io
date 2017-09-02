@@ -1,0 +1,105 @@
+<html>
+<head>
+    <link href="../../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog-post.css" rel="stylesheet" type="text/css" />
+    <link href="../prism.default.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+</head>
+<body class="language-js">
+<div id="blog-post">
+<h2>Animating Figures with D3 and setTimeout()</h2>
+<h3>June 27th, 2016 | by William Dickerson</h3>
+<p>Recently, I set off to make an animation of the insertion sort algorithm using D3 and some SVG elements. Here's the insertion sort algorithm in JavaScript:</p>
+
+<div class="cb"><pre>
+<code>function insertionSort(A) {
+    for(var j=1;j&lt;A.length;j++) {
+        var key = A[j];
+        var i = j - 1;
+        while(i>=0 &amp;&amp; A[i]&gt;key) {
+            A[i+1] = A[i];
+            i = i - 1;
+        }
+        A[i+1]=key;
+    }
+}</code>
+</pre></div>
+
+<p>And here's an SVG drawing of an array using D3:</p>
+
+<div class="cb"><pre>
+<code>function makeVisual(A){      
+    //Clear a div and prepare an SVG area for drawing
+    document.getElementById("visual-div").innerHTML="";  
+    var visualArea = d3.select("#visual-div")
+                   .append("svg")
+                   .attr("width","100%")
+                   .attr("height","100%")
+                   .attr("viewBox","0 0 600 600");
+    
+    //Determine bar width and make a height scale
+    var barWidth = 500/A.length;
+    var hScale = d3.scale.linear()
+          .domain([0,d3.max(A)])
+          .range([ 0, 250 ]);
+    
+    //Append some data
+    var visualBars = 
+        visualArea.append("g")
+                  .selectAll("bars")
+                  .data(A).enter();
+     
+    //Draw bars 
+    visualBars.append("rect")
+        .attr("x", function(d,i){return 60+(i*barWidth);} ) 
+        .attr("y", function(d){return 250-hScale(d);} )
+        .attr("height",function(d){return hScale(d);})
+        .attr("width",barWidth-10)
+        .attr("class","bar");
+}</code>
+</pre></div>
+
+<p>Here's what <code>makeVisual()</code> does with the array <code>myA = [5,2,4,6,1,3]</code>:</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/qa7b80kp/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>We'd like to use <code>makeVisual()</code> within the <code>for</code> loop of <code>insertionSort()</code>. The first problem we run into is that the loop executes so quickly that you don't see the bars move, but only the final sorted array. (Actually, the DOM isn't even updated until the <code>for</code> loop completes.) Because there is no <code>wait()</code> function in JavaScript, we turn to <code>setTimeout()</code>:</p>
+
+<div class="cb"><pre>
+<code>function insertionSort(A) {
+    for(var j=1;j&lt;A.length;j++) {
+        var key = A[j];
+        var i = j - 1;
+        while(i>=0 &amp;&amp; A[i]&gt;key) {
+            A[i+1] = A[i];
+            i = i - 1;
+        }
+        A[i+1]=key;
+        setTimeout(makeVisual,j*1000,A.splice());
+    }
+}</code>
+</pre></div>
+
+<p>Here's everything in action: (click "result" to restart the animation.)</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/3hrrhxer/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h4>Some intricacies of setTimeout()</h4>
+
+<p>&bull; The 3rd, 4th, 5th... arguments you pass to <code>setTimeout()</code> are passed as the 1st, 2nd, 3rd... arguments to the function you are delaying.</p>
+
+<p>&bull; We aren't adding any pause within the <code>for</code> loop; we are simply requesting some code to run in the future. Think of our <code>setTimeout(makeVisual,j*1000,A.splice())</code> command as queuing up a single frame of the animation.</p>
+
+<p>&bull; Because our <code>for</code> loop finishes executing before our first timer runs out, we can't use <code>setTimeout(makeVisual,j*1000,A)</code>. <code>A</code> will be sorted before <code>makeVisual(A)</code> ever runs! By using <code>A.splice()</code>, we create a new array with the current contents of <code>A</code>.</p>
+
+<p>My insertion sort animation is a work in progress, but <a href="http://www.wdickerson.com/insertionsort/">check it out here.</a></p>
+<script src="../prism.min.js"></script>
+</div>
+</body>
+</html>
+
+
+
+
+

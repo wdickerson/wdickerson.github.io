@@ -1,0 +1,273 @@
+/* line 3, ../scss/about.scss */
+body {
+  background-color: #C7EAFF;
+}
+
+/* line 7, ../scss/about.scss */
+#about-div {
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  flex-flow: row-reverse;
+  -webkit-flex-flow: row-reverse;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* line 19, ../scss/about.scss */
+.about {
+  margin: 6px;
+  background-color: #e1effa;
+}
+
+/* line 25, ../scss/about.scss */
+#glance-div {
+  box-sizing: border-box;
+  flex: 2;
+  min-width: 400px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* line 34, ../scss/about.scss */
+#glance-figure {
+  font-size: 32px;
+  width: 100%;
+  max-height: 360px;
+  flex: 1 1 10px;
+  -webkit-flex: 1 1 auto;
+  /* this */
+}
+
+/* line 41, ../scss/about.scss */
+#glance-header {
+  flex: 1 1 10px;
+  -webkit-flex: 1 1 auto;
+  /* this */
+}
+
+/* line 45, ../scss/about.scss */
+#about-me-div {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 300;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+/* line 53, ../scss/about.scss */
+#about-me-figure {
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 20px;
+  padding: 14px;
+  padding-top: 6px;
+}
+
+/* line 61, ../scss/about.scss */
+#about-me-figure p {
+  margin-bottom: 6px;
+}
+
+/* line 64, ../scss/about.scss */
+#hours-chart {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  background-color: white;
+}
+
+/* line 72, ../scss/about.scss */
+#figure1-div {
+  background-color: #1A98FA;
+  box-sizing: border-box;
+  flex: 3;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+/* line 80, ../scss/about.scss */
+#figure1-header {
+  text-align: right;
+  flex: 1;
+}
+
+/* line 84, ../scss/about.scss */
+#figure1-pc {
+  display: block;
+}
+
+/* line 87, ../scss/about.scss */
+#figure1-mobile {
+  display: none;
+}
+
+/* line 90, ../scss/about.scss */
+.figure2-div {
+  flex: 2;
+  background-color: #e1effa;
+  display: flex;
+  flex-flow: column;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+
+/* line 99, ../scss/about.scss */
+.figure2-svg-div {
+  flex: 2 2 auto;
+}
+
+/* line 102, ../scss/about.scss */
+.figure2-text-div {
+  flex: 2 2 auto;
+  font-size: 2.4vw;
+  margin: 20px;
+  margin-top: 0px;
+  line-height: 2.9vw;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* line 111, ../scss/about.scss */
+.pie-label {
+  text-anchor: middle;
+  fill: #0D4A7A;
+  width: 50px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+/* line 118, ../scss/about.scss */
+.figure2-header {
+  text-align: right;
+  flex: 1 1 auto;
+  height: 52px;
+  max-height: 52px;
+}
+
+/* line 124, ../scss/about.scss */
+.figure-arrow {
+  fill: #e1effa;
+}
+
+/* line 127, ../scss/about.scss */
+.topics-axis {
+  font-weight: 600;
+}
+
+/* line 130, ../scss/about.scss */
+.topics-label {
+  cursor: pointer;
+}
+
+/* line 133, ../scss/about.scss */
+.bars {
+  fill: #0D4A7A;
+}
+
+/* line 136, ../scss/about.scss */
+.selected-bar {
+  stroke: #e1effa;
+  stroke-width: 2;
+}
+
+/* line 140, ../scss/about.scss */
+.up-shift-line {
+  stroke-width: 5;
+  fill: none;
+}
+
+/* line 144, ../scss/about.scss */
+.down-shift-line {
+  stroke-width: 3;
+  fill: none;
+}
+
+/* line 148, ../scss/about.scss */
+.up1-line, .down2-line {
+  stroke: #1b8ce0;
+}
+
+/* line 151, ../scss/about.scss */
+.up2-line, .down3-line {
+  stroke: #eba799;
+}
+
+/* line 154, ../scss/about.scss */
+.up3-line, .down4-line {
+  stroke: #35decb;
+}
+
+@media screen and (max-width: 700px) {
+  /* line 160, ../scss/about.scss */
+  #about-div {
+    padding: 16px;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+  }
+
+  /* line 167, ../scss/about.scss */
+  .about {
+    margin: 0px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* line 172, ../scss/about.scss */
+  #about-me-div {
+    min-width: 284;
+    max-width: none;
+    -webkit-flex: 1 1 auto;
+    /* this */
+  }
+
+  /* line 177, ../scss/about.scss */
+  #glance-div {
+    min-width: 0;
+    -webkit-flex: 1 1 auto;
+    /* this */
+  }
+
+  /* line 181, ../scss/about.scss */
+  #glance-figure {
+    max-height: 60vw;
+  }
+
+  /* line 185, ../scss/about.scss */
+  #hours-chart {
+    flex-flow: column;
+  }
+
+  /* line 188, ../scss/about.scss */
+  #figure1-pc {
+    display: none;
+  }
+
+  /* line 191, ../scss/about.scss */
+  #figure1-mobile {
+    display: block;
+  }
+
+  /* line 194, ../scss/about.scss */
+  .figure1-div {
+    flex: 3 3 auto;
+  }
+
+  /* line 197, ../scss/about.scss */
+  .figure2-div {
+    flex: 2 2 auto;
+  }
+
+  /* line 200, ../scss/about.scss */
+  .figure2-text-div {
+    margin-top: 0px;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+  }
+}

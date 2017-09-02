@@ -1,0 +1,106 @@
+<html>
+<head>
+    <link href="../../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog-post.css" rel="stylesheet" type="text/css" />
+    <link href="../prism.default.css" rel="stylesheet"/>
+</head>
+<body class="language-js">
+<p>The <code>.data(yourData).enter()</code> function is great when you want to logically link some SVG elements to an array of objects. One element to one object. We refer to this as "binding" data. What if each object contains a property <code>nestedData</code> which is itself an array? Maybe you want to have an SVG element for each object in <code>yourData</code>, and also have an SVG element for each value in <code>nestedData</code>.</p>
+
+<p>D3 let's us "nest" our data bindings to accomplish this.</p>
+
+<p>Consider an example where we want to show some stations of the NYC Subway. Here's an array of objects:</p>
+
+<div class="cb"><pre>
+<code>var stations = [
+    {
+        "name": "Times Square",
+        "x": 80,
+        "y": 100,
+        "colors":["red","yellow","purple"]
+    },
+    {
+        "name": "Union Square",
+        "x": 100,
+        "y": 220,
+        "colors":["green","yellow","gray"]
+    },
+    {
+        "name": "Fulton Street",
+        "x": 130,
+        "y": 320,
+        "colors":["blue","red","green","brown"]
+    }
+]</code>
+</pre></div>
+
+<p>For simplicity, we're using x and y coordinates instead of latitude and longitude, and we're not worrying about a map of Manhattan.</p>
+
+<p>First, let's prepare an SVG element to draw on:</p>
+
+<div class="cb"><pre>
+<code>var plot = d3.select("body")
+             .append("svg")
+             .attr("width","60vh")
+             .attr("height","100vh")
+             .attr("viewBox","0 0 350 500");</code>
+</pre></div>
+                
+<p>Now, let's draw a symbol at the location of each station. Our symbol is a white "M" inside a blue square.</p>
+
+<div class="cb"><pre>
+<code>// Bind the array of objects
+var stations = plot.selectAll("stations")
+                   .data(stations);
+
+// Append an SVG element at the station location
+stations.enter()
+        .append("svg")
+        .attr("x",function(d){return d.x;})
+        .attr("y",function(d){return d.y;})
+
+// Add a blue square for each station
+stations.append("rect")
+        .attr("width",30)
+        .attr("height",30)
+        .attr("fill","skyblue");
+
+// Add an M over each blue square
+stations.append("text")
+        .text("M")
+        .style("font-size","30px")
+        .style("font-family","sans-serif")
+        .attr("fill","white")
+        .attr("dx",2)
+        .attr("dy",26);</code>
+</pre></div>
+            
+<p>So far so good, but now we would like to show the colors (of subway lines) that are served at each station. </p>
+
+<div class="cb"><pre>
+<code>// Bind the "colors" array to each station's SVG.
+// Remember that "stations" is already bound to data,
+// which gives meaning to "return d.colors;"
+var stationColors = 
+        stations.selectAll("stationColors")
+                .data(function(d){return d.colors;});
+
+// Append a square for each color
+// Use the index "i" to set the x position.
+stationColors.enter()
+             .append("rect")
+             .attr("width",30)
+             .attr("height",30)
+             .attr("x",function(d,i){return 32*(i+1)})
+             .attr("fill",function(d){console.log(d);return d;});</code>
+</pre></div>
+                 
+<p>For more examples of nesting data in D3, see Mike Bostock's explanation here: https://bost.ocks.org/mike/nest/</p>
+<script src="../prism.min.js"></script>
+</body>
+</html>
+
+
+
+
+

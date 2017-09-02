@@ -1,0 +1,38 @@
+<html>
+<head>
+    <link href="../../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog-post.css" rel="stylesheet" type="text/css" />
+    <link href="../prism.default.css" rel="stylesheet"/>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+</head>
+<body class="language-js">
+<div id="blog-post">
+<h2>Adding Shadow Effects to D3 Charts</h2>
+<h3>August 8th, 2016 | by William Dickerson</h3>
+<p>Let's say you have an area chart that shows sales over
+time for some product:</p>
+
+<iframe width="100%" height="500" src="//jsfiddle.net/wilburrr90/msvrf4xt/3/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>There are two ways to interperet this chart. If it's a <i>stacked</i> area
+chart, then to find the number of desserts sold on 6/1, you subtract 21 from 80. This would make sense if a scone is not considered a dessert. However, if a scone is considered a dessert, it might be better to use a <i>layered</i> area chart. In this case, we would see that, on 6/1, 80 desserts were sold and 21 of them were scones.</p>
+
+<p>One way to emphasize that we have a layered area chart is to add a shaddow effect to each area. This indicates that both areas begin at the x axis, and that one is drawn in front of the other.</p>
+
+<iframe width="100%" height="500" src="//jsfiddle.net/wilburrr90/e8jedo5u/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>To create the shadow effect, we use <code>-webkit-filter: drop-shadow(1px -3px 3px gray)</code> on the appropriate SVG element, but there are some caveats:
+</p>
+<ul>
+  <li>1. For now, it only works in Chrome. In fact, having <code>-webkit-filter: drop-shadow(1px -3px 3px gray)</code> causes Safari to completely omit the SVG. To fix this, we also inclue <code>filter: none</code></li>
+  <li>2. The <code>drop-shadow</code> filter can only be applied to an entire SVG element, so we must draw each of our areas in its own SVG element and align them.</li>
+</ul>
+</div>
+</body>
+</html>
+
+
+
+
+

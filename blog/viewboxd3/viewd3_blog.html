@@ -1,0 +1,125 @@
+<html>
+<head>
+    <link href="../../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog-post.css" rel="stylesheet" type="text/css" />
+    <link href="../prism.default.css" rel="stylesheet"/>
+</head>
+<body class="language-js">
+<p>The SVG <code>viewBox</code> attribute provides a great way to make D3 charts responsive to window resizing. Let's look at an example of a bar chart about customers' dessert preference. Here's the data:</p>
+
+<div class="cb"><pre>
+<code>var desserts = ["Cookies","Cupcakes","Ice Cream Cones","Muffins"];
+var customers = [34,41,52,18];</code>
+</pre></div>
+
+<p>Let's start with a non-responsive chart. First, we set up our margins and prepare an SVG element to draw on:</p>
+
+<div class="cb"><pre>
+<code>var margin = {top: 10, right: 10, bottom: 120, left: 30};
+var width = 300 - margin.left - margin.right;
+var height = 300 - margin.top - margin.bottom;
+
+//A non-responsive chart area
+var chart = d3.select("#chart-div")
+                .append("svg")
+                .attr("width",width+margin.left+margin.right)
+                .attr("height",height+margin.top+margin.bottom)
+                .append("g")
+                .attr("transform","translate("+
+                    margin.left+","+margin.top+")");</code>
+</pre></div>
+                
+<p>Now, we set up the scales and axes:</p>
+
+<div class="cb"><pre>
+<code>//Define the x and y scales
+var x = d3.scale.ordinal()
+          .domain(desserts)
+          .rangePoints([0,width],1);         
+var y = d3.scale.linear()
+          .domain([0,60])
+          .range([height,0]); 
+
+//Define the x and y axes
+var xAxis = d3.svg.axis()
+              .scale(x)
+              .orient("bottom");
+var yAxis = d3.svg.axis()
+              .scale(y)
+              .orient("left");</code>
+</pre></div>
+            
+<p>Finally, add the axes and bars to our chart area: </p>
+
+<div class="cb"><pre>
+<code>//Add the x axis, rotate the labels
+chart.append("g")
+     .attr("transform", "translate(0,"+height+")")
+     .call(xAxis)
+     .selectAll("text")
+     .attr("transform", "rotate(-65)")
+     .style("text-anchor", "end");
+
+//Add the y axis
+chart.append("g")
+     .call(yAxis);
+
+//Add the bars
+chart.selectAll("bars")
+     .data(desserts).enter()
+     .append("rect")
+     .attr("x",function (d) { return x(d)-20; })
+     .attr("y",function (d,i) { return y(customers[i]); })
+     .attr("height",function (d,i) { return height-y(customers[i]); })
+     .attr("width",50);</code>
+</pre></div>
+
+<p>Here's our non-responsive chart in a JSFiddle. Notice the blue border around the <code>div</code> element, and notice that the chart doesn't change if you resize the window.</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/hojrabkg/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h3>Responding to width resizes</h3>
+
+<p>Now for the fun part! To make our chart responsive, we just need to change a few lines in our definition of the <code>chart</code>area: </p>
+
+<div class="cb"><pre>
+<code>//A responsive chart area
+var chart = d3.select("#chart-div")
+                .append("svg")
+                .attr("width","100%")
+                .attr("viewBox","0 0 "+
+                    (width+margin.left+margin.right)+
+                    " "+
+                    (height+margin.top+margin.bottom) )
+                .append("g")
+                .attr("transform","translate("+
+                    margin.left+","+margin.top+")");</code>
+</pre></div>
+
+<p>Notice that we are now defining the <code>chart</code> area to be the width of our <code>div</code>. Sometimes that width might be 100 pixels, and sometimes it might be 800 pixels. The <code>viewBox</code> attribute tells the browser that--no matter the <i>actual</i> width of the <code>chart</code> area, we want to work with a single coordinate system. Our coordinate system goes from 0 to <code>width + margin.left + margin.right</code> in the x direction, and from 0 to <code>height + margin.top + margin.bottom</code>  in the y direction.</p>
+
+<p>Here it is in a JSFiddle. Notice how the chart respons to width resizes, but how it will still outgrow the height of our <code>div</code>. </p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/p571pe30/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h3>Responding to width AND height resizes</h3>
+
+<p>What happens when we set the width and height of <code>chart</code> to be 100% or our <code>div</code>? By default, the browser will preserve the aspect ratio of the drawing, and so you will get the largest possible chart that fits into both the width and height of the <code>div</code>. See it in this fiddle:</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/up5kex2e/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>Sometimes we may want our chart to skew in order to fill the entire <code>div</code>. In that case, we just add <code>.attr("preserveAspectRatio","none")</code> to our definition of <code>chart</code>. Here it is in a fiddle:</p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/wilburrr90/kczd4rjf/embedded/js,html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p>Although our example looked at a bar chart, the <code>viewBox</code> technique works for many types of figures generated in D3.</p>
+
+<p>Here's a great tutorial on the SVG viewBox:<a href="http://jonibologna.com/svg-viewbox-and-viewport/">http://jonibologna.com/svg-viewbox-and-viewport/</a></p>
+<script src="../prism.min.js"></script>
+</body>
+</html>
+
+
+
+
+

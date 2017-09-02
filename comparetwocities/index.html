@@ -1,0 +1,274 @@
+<html>
+    
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/compare.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300,200,600,900' rel='stylesheet' type='text/css'>
+    <title>Compare Two Cities</title>
+</head>  
+    
+<body>
+<div id="topBar">
+    Compare Two Cities
+</div>
+<div id="showMe">
+    
+    <div id="showPersonsDiv" class="showDiv">
+        <input type="checkbox" id="showPersonsBox" class="showBox" onChange="update()" checked> <label for="showPersonsBox">People</label>
+    </div> 
+    <div id="showCarsDiv" class="showDiv">
+        <input type="checkbox" id="showCarsBox" class="showBox" onChange="update()" checked> <label for="showCarsBox">Cars</label>
+    </div>
+    <div id="showSubwaysDiv" class="showDiv">
+        <input type="checkbox" id="showSubwaysBox" class="showBox" onChange="update()"> <label for="showSubwaysBox">Subways</label>
+    </div> 
+    <div id="showCrimesDiv" class="showDiv">
+        <input type="checkbox" id="showCrimesBox" class="showBox" onChange="update()"> <label for="showCrimesBox">Crime</label>
+    </div> 
+  
+</div>
+<div id="cities">
+    
+    <div id="city1Div" class="cityDiv"> 1 square mile of &nbsp;
+        <select id="city1Select" class="citySelect" onChange="update()">
+            <!--The options are created with d3-->
+        </select>
+        <div id="city1SvgContainer" class="svgContainer">
+            <svg id="city1Svg" class="citySvg" viewBox="0 0 120 80">
+            </svg>
+        </div>
+    </div>
+    
+    <div id="city2Div" class="cityDiv"> 1 square mile of &nbsp;
+        <select id="city2Select" class="citySelect" onChange="update()">
+            <!--The options are created with d3-->
+        </select>
+        <div id="city2SvgContainer" class="svgContainer">
+            <svg id="city2Svg" class="citySvg" viewBox="0 0 120 80">
+            </svg>
+        </div>
+    </div>
+</div>
+    
+<div id="legend">
+    <div id="personLeg" class="divLeg">
+        <img class="imgLeg" src="person.png"> =1,000 people 
+    </div>
+    <div id="carLeg" class="divLeg">
+        <img class="imgLeg" src="car.png"> =1,000 cars
+    </div>
+    <div id="subwayLeg" class="divLeg">
+        <img class="imgLeg" src="subway.png"> =1 subway station
+    </div>
+    <div id="crimeLeg" class="divLeg">
+        <img class="imgLeg" src="crime.png"> =100 crimes per year
+    </div>
+</div>
+    
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+    
+window.addEventListener("keypress",update, true);
+    
+/* The data is in this order:
+0. Austin
+1. Boston
+2. Chicago
+3. Dallas
+4. Denver
+5. Detroit
+6. Dubai
+7. Greensboro
+8. Houston
+9. London
+10.Los Angeles
+11.Manhattan
+12.Miami
+13.Moscow
+14.New York City
+15.Philadelphia
+16.Phoenix
+17.San Diego
+18.Tokyo
+19.Toronto
+20.Washington D.C.
+*/
+    
+var persons = new Array;
+var cars = new Array;
+var subways = new Array;
+var crimes = new Array;
+
+
+// initialize your grid to empty
+var linGrid, gridRows, gridCols;
+
+    
+// Try bringing in the .csv
+d3.csv("cityData.csv", function(cityData) {
+    //console.log(cityData.miles);
+    d3.select("#city1Select")
+        .append("option")
+        .attr("value", cityData.index)
+        .attr("id", "city1_"+cityData.index)
+        .html(cityData.city);
+        
+    d3.select("#city2Select")
+        .append("option")
+        .attr("value", cityData.index)
+        .attr("id", "city2_"+cityData.index)
+        .html(cityData.city);
+    
+    var tPeople = parseInt(cityData.people);
+    var tCars = parseInt(cityData.cars);
+    var tSubways = parseInt(cityData.subways);
+    var tCrimes = parseInt(cityData.crimes);
+    var tMiles = parseInt(cityData.miles);
+    
+    persons.push( Math.ceil( tPeople / 1000 ) ) ;
+    cars.push( Math.ceil( tPeople*(tCars/1000) / 1000 ) );
+    subways.push( Math.ceil(tSubways/tMiles) );
+    crimes.push( Math.ceil( tPeople*(tCrimes/100000) / 100 ) );
+}
+, 
+function(error, rows) {
+  // console.log(rows);
+    d3.select("#city1_14").attr("selected","selected");
+    d3.select("#city2_10").attr("selected","selected");
+    //console.log(persons);
+    update();
+}
+);
+    
+function update(e) 
+{     
+    // clear the boxes
+    document.getElementById("city1Svg").innerHTML="";
+    document.getElementById("city1Svg").textContent="";
+    document.getElementById("city2Svg").innerHTML="";
+    document.getElementById("city2Svg").textContent="";
+    document.getElementById("personLeg").style.display="none";
+    document.getElementById("carLeg").style.display="none";
+    document.getElementById("subwayLeg").style.display="none";
+    document.getElementById("crimeLeg").style.display="none";
+    
+    //console.log(document.getElementById("showCarsBox").checked);
+    showPersons = document.getElementById("showPersonsBox").checked;
+    showCars = document.getElementById("showCarsBox").checked;
+    showSubways = document.getElementById("showSubwaysBox").checked;
+    showCrimes = document.getElementById("showCrimesBox").checked;
+
+    c1 = parseInt( document.getElementById("city1Select").value );
+    c2 = parseInt( document.getElementById("city2Select").value );
+    
+    // Size the grids appropriately 
+    var needCity1 = 0; var needCity2 = 0;
+    if (showPersons)
+    { 
+        needCity1 += persons[c1]; needCity2 += persons[c2]; 
+        document.getElementById("personLeg").style.display="block";
+    }
+    if (showCars)
+    { 
+        needCity1 += cars[c1]; needCity2 += cars[c2]; 
+        document.getElementById("carLeg").style.display="block";
+    }
+    if (showSubways)
+    { 
+        needCity1 += subways[c1]; needCity2 += subways[c2]; 
+        document.getElementById("subwayLeg").style.display="block";
+    }
+    if (showCrimes)
+    { 
+        needCity1 += crimes[c1]; needCity2 += crimes[c2]; 
+        document.getElementById("crimeLeg").style.display="block";
+    }
+
+    needBoth = Math.max(needCity1,needCity2);
+    need=needBoth * 1; // Add a little free space
+    gridRows = Math.ceil( Math.sqrt(need/1.5) );
+    gridCols = Math.ceil( gridRows * 1.5 );
+    d3.selectAll(".citySvg")
+      .attr("viewBox","0 0 " + gridCols + " " + gridRows);
+    
+    linGrid = new Array(gridRows*gridCols);
+ //   linGrid = new Array(100);
+    
+    // add images to city1
+    linGrid.fill(0);
+    if(showPersons)
+        addImages("#city1Svg","person.png",persons[c1]);
+    if(showCars)
+        addImages("#city1Svg","car.png",cars[c1]);
+    if(showSubways)
+        addImages("#city1Svg","subway.png",subways[c1]);
+    if(showCrimes)
+        addImages("#city1Svg","crime.png",crimes[c1]);
+
+    // add images to city2 (reset the grid first!)
+    linGrid.fill(0);
+    if(showPersons)
+        addImages("#city2Svg","person.png",persons[c2]);
+    if(showCars)
+        addImages("#city2Svg","car.png",cars[c2]);
+    if(showSubways)
+        addImages("#city2Svg","subway.png",subways[c2]);
+    if(showCrimes)
+        addImages("#city2Svg","crime.png",crimes[c2]);
+}
+
+function addImages(SVG_ID, imageName, quantity) {
+    //console.log(quantity);
+    for(i=0;i<quantity;i++)
+    {
+        space = Math.floor((Math.random() * (gridRows*gridCols)));
+        var kill=0;
+        while(linGrid[space]==1 && kill<2)
+        {
+            if( space>=(gridRows*gridCols-1) )
+            { space=-1; kill++; }
+            //space+= Math.floor( Math.random()*3 ) + 2 ;
+            space++;
+        }
+        if(kill>=2)
+            console.log("killed");
+        
+        linGrid[space]=1;
+        ind = ind2sub([gridRows,gridCols],space);
+        d3.select(SVG_ID).append("image")
+          .attr("xlink:href", imageName)
+          .attr("width","1")
+          .attr("height","1")
+          .attr("x", ind[1]*1)
+          .attr("y", ind[0]*1);
+    }
+}
+    
+//console.log(ind2sub([16,24],0)); 
+function ind2sub(siz, IND){
+    var r = siz[0];
+    var c = siz[1];
+    
+    if(IND>=r*c)
+        return [-1,-1]
+    
+    var myR = Math.floor(IND/c);
+    var myC = IND - myR*c;
+    
+    //console.log("R = " + (myR), " C = " + myC);
+    return [myR,myC];
+}
+    
+/* Data from:
+
+Cars:
+http://www.city-data.com/forum/city-vs-city/653396-metro-areas-ranked-vehicles-per-1-a.html
+
+*/
+    
+</script>
+    
+</body>
+</html>
+
+

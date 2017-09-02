@@ -1,0 +1,313 @@
+<html>
+    
+<head>
+    <link href="../../css/portfolio.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/blog-post.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <link href="../prism.default.css" rel="stylesheet"/>
+    <title>William Dickerson</title>
+</head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<body>
+
+<div id="header-div">
+    <div id="myName">
+        <a class="nav-link" href="../..">
+            William Dickerson
+            <div id="myLocation"> New York, NY, USA </div>
+        </a>
+    </div>
+    <div id="color-stripe" height="100%">
+        <svg id="color-stripe-svg" viewBox="0 0 144 150" preserveAspectRatio="none">
+            <polygon class="navBlue" points="0,0 24,0 0,150 "/>
+            <polygon class="col1" points="24,0 54,0 30,150 0,150 "/>
+            <polygon class="col2" points="54,0 84,0 60,150 30,150 "/>
+            <polygon class="col3" points="84,0 114,0 90,150 60,150 "/>
+            <polygon class="col4" points="114,0 144,0 120,150 90,150 "/>
+            <polygon class="bgLight" points="144,0 144,150 120,150"/>
+        </svg>
+    </div>
+    <div id="skills-container">
+        Computer Science, Engineering<br>
+        <div class="sub-skill">
+            &amp; Other Adventures
+        </div>
+    </div>
+</div>
+
+<div id="nav-bar">
+    <svg style="display:none";>
+        <defs>
+            <svg id="slash-def-left" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,0 24,0 24,4 0,4"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,100 24,100 24,96 0,96"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="7,100 9,100 20,0 18,0"/>
+-->
+                <polygon class="slash-cur-slash" 
+                points="6,100 7,100 18,0 17,0"/>
+                <polygon class="slash-cur-nav" 
+                points="6,100 0,100 0,0 17,0"/>
+            </svg>
+            <svg id="slash-def-right" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,0 24,0 24,4 0,4"
+                fill="green"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="0,100 24,100 24,96 0,96"
+                fill="green"/>
+-->
+<!--
+                <polygon class="slash-cur-nav" 
+                points="4,100 6,100 17,0 15,0"
+                fill="green"/>
+-->
+                <polygon class="slash-cur-slash" 
+                points="6,100 7,100 18,0 17,0"/>
+                <polygon class="slash-cur-nav" 
+                points="7,100 24,100 100,0 18,0"
+                fill="yellow"/>
+            </svg>
+            <svg id="slash-def" viewBox="0 0 24 100" 
+            preserveAspectRatio="none">
+                <polygon class="slash-svg" points="6,100 7,100 18,0 17,0"/>
+            </svg>
+        </defs>
+    </svg>
+    <div id="blank-nav-div" class="bx-div">
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg">
+            <use xlink:href="#slash-def"></use>
+        </svg>
+    </div>
+    <div id="b1-div" class="bx-div">
+        <a class="nav-link" href="../../about"><span class="empty-span"></span>
+            About
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg">
+            <use xlink:href="#slash-def"></use>
+        </svg>
+    </div>
+    <div id="b2-div" class="bx-div">
+        <a class="nav-link" href="../../projects"><span class="empty-span"></span>
+            Projects
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg slash-svg-cur">
+            <use xlink:href="#slash-def-left"></use>
+        </svg>
+    </div>
+    <div id="b3-div" class="bx-div current-bx-div">
+        <a class="nav-link" href=".."><span class="empty-span"></span>
+            Blog
+        </a>
+    </div>
+    <div class="slash-div">
+        <svg class="slash-svg slash-svg-cur">
+            <use xlink:href="#slash-def-right"></use>
+        </svg>
+    </div>
+    <div id="b4-div" class="bx-div">
+        <a class="nav-link" href="../../contact"><span class="empty-span"></span>
+            Contact
+        </a>
+    </div>
+</div>
+
+<div id="blog-post" class="language-js">
+<! ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    YOUR BLOG POST GOES HERE 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ >
+<h2>Nesting Data with D3</h2>
+<h3>June 15th, 2016 | by William Dickerson</h3>
+<p>The <code>.data(yourData).enter()</code> function is great when you want to logically link some SVG elements to an array of objects. One element to one object. We refer to this as "binding" data. What if each object contains a property <code>nestedData</code> which is itself an array? Maybe you want to have an SVG element for each object in <code>yourData</code>, and also have an SVG element for each value in <code>nestedData</code>.</p>
+
+<p>D3 let's us "nest" our data bindings to accomplish this.</p>
+
+<p>Consider an example where we want to show some stations of the NYC Subway. Here's an array of objects:</p>
+
+<div class="cb"><pre>
+<code>var stations = [
+    {
+        "name": "Times Square",
+        "x": 80,
+        "y": 100,
+        "colors":["red","yellow","purple"]
+    },
+    {
+        "name": "Union Square",
+        "x": 100,
+        "y": 220,
+        "colors":["green","yellow","gray"]
+    },
+    {
+        "name": "Fulton Street",
+        "x": 130,
+        "y": 320,
+        "colors":["blue","red","green","brown"]
+    }
+]</code>
+</pre></div>
+
+<p>For simplicity, we're using x and y coordinates instead of latitude and longitude, and we're not worrying about a map of Manhattan.</p>
+
+<p>First, let's prepare an SVG element to draw on:</p>
+
+<div class="cb"><pre>
+<code>var plot = d3.select("body")
+             .append("svg")
+             .attr("width","60vh")
+             .attr("height","100vh")
+             .attr("viewBox","0 0 350 500");</code>
+</pre></div>
+                
+<p>Now, let's draw a symbol at the location of each station. Our symbol is a white "M" inside a blue square.</p>
+
+<div class="cb"><pre>
+<code>// Bind the array of objects
+var stationSymbols = plot.selectAll("stations")
+                         .data(stations);
+
+// Append an SVG element at the station location
+stationSymbols.enter()
+              .append("svg")
+              .attr("x",function(d){return d.x;})
+              .attr("y",function(d){return d.y;})
+
+// Add a blue square for each station
+stationSymbols.append("rect")
+              .attr("width",30)
+              .attr("height",30)
+              .attr("fill","skyblue");
+
+// Add an M over each blue square
+stationSymbols.append("text")
+              .text("M")
+              .style("font-size","30px")
+              .style("font-family","sans-serif")
+              .attr("fill","white")
+              .attr("dx",2)
+              .attr("dy",26);</code>
+</pre></div>
+            
+<p>So far so good, but now we would like to show the colors (of subway lines) that are served at each station. </p>
+
+<div class="cb"><pre>
+<code>// Bind the "colors" array to each station's SVG.
+// Remember that "stationSymbols" is already bound to data,
+// which gives meaning to "return d.colors;"
+var stationColors = 
+        stationSymbols.selectAll("stationColors")
+                      .data(function(d){return d.colors;});
+
+// Append a square for each color
+// Use the index "i" to set the x position.
+stationColors.enter()
+             .append("rect")
+             .attr("width",30)
+             .attr("height",30)
+             .attr("x",function(d,i){return 32*(i+1)})
+             .attr("fill",function(d){console.log(d);return d;});</code>
+</pre></div>
+
+<p>Here is our example in action:</p>
+
+<iframe style="margin-top:12" width="100%" height="300" src="//jsfiddle.net/wilburrr90/3ahf8nzm/embedded/result,js,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+                 
+<p>For more examples of nesting data in D3, see Mike Bostock's explanation here: <a href="https://bost.ocks.org/mike/nest/">https://bost.ocks.org/mike/nest/</a></p>
+
+<! Disqus comments >
+<div id="disqus_thread"></div>
+<script>
+
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+
+var disqus_config = function () {
+    this.page.url = 'http://www.wdickerson.com/blog/nestingd3/';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = '/nestingd3/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//wdickerson.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<! End Disqus comments >
+
+<! ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    END OF BLOG POST 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ >
+</div>
+    
+<div id="welcome-footer-not-home">
+    <div id="footer-social">
+        <a class="social-link" href="http://stackoverflow.com/users/5953464/wilburrr90">
+            <i class="fa fa-stack-overflow"></i>
+        </a> 
+        <a class="social-link" 
+        href="http://www.github.com/wilburrr90">
+            <i class="fa fa-github"></i>
+        </a>
+        <a class="social-link" 
+        href="https://www.linkedin.com/in/wdickerson08">
+            <i class="fa fa-linkedin-square"></i>
+        </a>
+        <div id="footer-bio">
+            <img id="footer-bio-img" 
+            src="../../css/images/me_hudson.jpg"/>
+            William has developed software for 3 of the world's largets automakers. He studies computer science at Pace University and holds a bachelor's degree in mathematics.
+        </div>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../../contact"><span class="empty-span"></span>
+            Contact
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../"><span class="empty-span"></span>
+            Blog
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../../projects"><span class="empty-span"></span>
+            Projects
+        </a>
+    </div>
+    <div class="footer-nav">
+        <a class="nav-link" href="../../about"><span class="empty-span"></span>
+            About
+        </a>
+    </div>
+</div>
+
+<script src="../portfolio.js"></script>
+<script src="../prism.min.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,88 @@
+/* line 4, ../scss/blog-post.scss */
+body {
+  background-color: white;
+  font-weight: 400;
+}
+
+/* line 12, ../scss/blog-post.scss */
+p {
+  color: black;
+  margin-top: 20px;
+}
+
+/* line 22, ../scss/blog-post.scss */
+#blog-post {
+  font-size: 1.15rem;
+  line-height: 170%;
+  box-sizing: border-box;
+  margin-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* line 33, ../scss/blog-post.scss */
+ul {
+  line-height: 150%;
+  margin-left: 1em;
+}
+/* line 37, ../scss/blog-post.scss */
+ul li {
+  margin-top: .5em;
+}
+
+/* line 52, ../scss/blog-post.scss */
+code {
+  font-size: .9rem;
+}
+
+/* line 56, ../scss/blog-post.scss */
+h2 {
+  font-size: 3.4rem;
+  line-height: 3.4rem;
+  font-weight: 700;
+}
+
+/* line 62, ../scss/blog-post.scss */
+h3 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-top: 16px;
+}
+
+/* line 67, ../scss/blog-post.scss */
+h4 {
+  margin-top: 20px;
+}
+
+/* line 70, ../scss/blog-post.scss */
+i {
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* line 74, ../scss/blog-post.scss */
+#disqus_thread {
+  padding-top: 2em;
+}
+
+@media screen and (max-width: 700px) {
+  /* line 79, ../scss/blog-post.scss */
+  #blog-post {
+    margin-top: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  /* line 86, ../scss/blog-post.scss */
+  h2 {
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+    font-weight: 700;
+  }
+
+  /* line 92, ../scss/blog-post.scss */
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+}
