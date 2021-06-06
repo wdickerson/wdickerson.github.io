@@ -1,0 +1,57 @@
+<html>
+    <div id="container">
+        <div id="label">Ben & Haley 2.0 in:</div>
+        <div id="clock"></div>
+    </div>
+</html>
+
+<script>
+    const weddingStart = new Date('2021-06-06T17:00:00');
+
+    function msToTime(s) {
+      function pad(n, z) {
+        z = z || 2;
+        return ('00' + n).slice(-z);
+      }
+
+      var ms = s % 1000;
+      s = (s - ms) / 1000;
+      var secs = s % 60;
+      s = (s - secs) / 60;
+      var mins = s % 60;
+      var hrs = (s - mins) / 60;
+
+      return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+    }
+        
+    function updateClock() {
+        const currentTime = new Date();
+        const diffTime = Math.abs(weddingStart - currentTime);
+        const formattedTime = msToTime(diffTime);
+        document.getElementById("clock").innerHTML = formattedTime;
+    }
+        
+    setInterval(updateClock, 1000)   
+</script>
+
+<style>
+
+    #container {
+        padding-top: 128px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #label {
+        text-align: center;
+        align-content: center;
+        width: 100%;
+        font-size: 64px;
+    }
+    #clock {
+        text-align: center;
+        align-content: center;
+        width: 100%;
+        font-size: 124px;
+    }
+</style>
