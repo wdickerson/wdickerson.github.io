@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="./normalize.css">
+  <link rel="stylesheet" type="text/css" href="./xstyle.css">
+  <title>Photobooth</title>
+  <style data-emotion="css" data-s="">
+    .css-jyc14k {
+      height: 100%;
+      line-height: 0;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-1mlsjyi {
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      background: white;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      height: 78px;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      left: 0;
+      padding: 0 30px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 2;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-5zrqf5 {
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      margin: auto;
+      max-width: 768px;
+      width: 768px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-427ijg {
+      height: 26px;
+      width: 30px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-166papn {
+      font-family: utopia-std;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 36px;
+      text-align: center;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-h93a3h {
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 78px;
+    }
+  </style>
+  <style data-emotion="css" data-s="">
+    .css-zeczd6 {
+      width: 50vw;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root">
+    <div class="css-jyc14k">
+      <div class="css-1mlsjyi">
+        <div class="css-5zrqf5">
+          <div class="css-427ijg"></div>
+          <h1 class="css-166papn">Photobooth</h1>
+          <div class="css-427ijg"></div>
+        </div>
+      </div>
+      <div class="css-h93a3h">
+        <video id="video1" class="css-zeczd6"></video>
+        <video id="video2" class="css-zeczd6"></video>
+        <video id="video3" class="css-zeczd6"></video>
+        <video id="video4" class="css-zeczd6"></video>
+      </div>
+    </div>
+  </div>
+  <script>
+    const videoElement1 = document.getElementById('video1');
+    const videoElement2 = document.getElementById('video2');
+    const videoElement3 = document.getElementById('video3');
+    const videoElement4 = document.getElementById('video4');
+
+    navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: 'environment',
+      },
+      audio: false,
+    }).then(stream => {
+      videoElement1.srcObject = stream;
+      videoElement1.play();
+      videoElement2.srcObject = stream;
+      videoElement2.play();
+      videoElement3.srcObject = stream;
+      videoElement3.play();
+      videoElement4.srcObject = stream;
+      videoElement4.play();
+    }).catch(err => {
+      console.log("An error occurred: " + err);
+    });
+
+    const toggle = ({target}) => {target.paused ? target.play() : target.pause()};
+    videoElement1.addEventListener('click', toggle)
+    videoElement2.addEventListener('click', toggle)
+    videoElement3.addEventListener('click', toggle)
+    videoElement4.addEventListener('click', toggle)
+  </script>
+
+</body>
+
+</html>
