@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/qordle/static/css/main.4b09cb55.css",
+    "main.js": "/qordle/static/js/main.c2cafae9.js",
+    "static/js/787.ddde7027.chunk.js": "/qordle/static/js/787.ddde7027.chunk.js",
+    "index.html": "/qordle/index.html",
+    "main.4b09cb55.css.map": "/qordle/static/css/main.4b09cb55.css.map",
+    "main.c2cafae9.js.map": "/qordle/static/js/main.c2cafae9.js.map",
+    "787.ddde7027.chunk.js.map": "/qordle/static/js/787.ddde7027.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4b09cb55.css",
+    "static/js/main.c2cafae9.js"
+  ]
+}
