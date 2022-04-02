@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/qordle/static/css/main.b603931b.css",
-    "main.js": "/qordle/static/js/main.ad8ee38a.js",
+    "main.css": "/qordle/static/css/main.921ff640.css",
+    "main.js": "/qordle/static/js/main.0e4968f9.js",
     "static/js/787.ddde7027.chunk.js": "/qordle/static/js/787.ddde7027.chunk.js",
     "index.html": "/qordle/index.html",
-    "main.b603931b.css.map": "/qordle/static/css/main.b603931b.css.map",
-    "main.ad8ee38a.js.map": "/qordle/static/js/main.ad8ee38a.js.map",
+    "main.921ff640.css.map": "/qordle/static/css/main.921ff640.css.map",
+    "main.0e4968f9.js.map": "/qordle/static/js/main.0e4968f9.js.map",
     "787.ddde7027.chunk.js.map": "/qordle/static/js/787.ddde7027.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b603931b.css",
-    "static/js/main.ad8ee38a.js"
+    "static/css/main.921ff640.css",
+    "static/js/main.0e4968f9.js"
   ]
 }
