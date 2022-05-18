@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/phrazy/static/css/main.6277af81.css",
+    "main.js": "/phrazy/static/js/main.09849168.js",
+    "static/js/787.ddde7027.chunk.js": "/phrazy/static/js/787.ddde7027.chunk.js",
+    "static/media/SettingsCog.svg": "/phrazy/static/media/SettingsCog.6c06ad781a2e46f89b2845626f7f9f7e.svg",
+    "index.html": "/phrazy/index.html",
+    "main.6277af81.css.map": "/phrazy/static/css/main.6277af81.css.map",
+    "main.09849168.js.map": "/phrazy/static/js/main.09849168.js.map",
+    "787.ddde7027.chunk.js.map": "/phrazy/static/js/787.ddde7027.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6277af81.css",
+    "static/js/main.09849168.js"
+  ]
+}
