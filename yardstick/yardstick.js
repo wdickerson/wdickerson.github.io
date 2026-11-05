@@ -1,7 +1,7 @@
 // Initialize a map with leaflet
 var map = L.map('map').setView([40.740693, -74.004536], 14);
 L.tileLayer(
-    'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png?key=cb1_534h_1_ea90a11356466976ec2d84b8', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     maxZoom: 30,
     }).addTo(map);
